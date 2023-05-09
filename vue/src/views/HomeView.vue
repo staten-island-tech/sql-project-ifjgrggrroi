@@ -26,13 +26,13 @@ li {
 import { ref, onMounted } from 'vue'
 import { supabase } from '../lib/supabaseClient'
 
-const test = ref('')
+const Data = ref('')
 
 async function getEmployees() {
   try {
     let { data: employees, error } = await supabase.from('employees').select('*')
 
-    test.value = employees
+    Data.value = employees
     console.log(employees)
   } catch (error) {
     console.log(error)
@@ -46,6 +46,6 @@ onMounted(() => {
 
 <template>
   <ul>
-    <li v-for="country in test" :key="country.id">{{ country }}</li>
+    <li v-for="employee in Data" :key="employee.id">{{ employee.name }}</li>
   </ul>
 </template>
