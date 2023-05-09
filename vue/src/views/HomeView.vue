@@ -1,27 +1,3 @@
-<!-- <script setup>
-import { ref, onMounted } from 'vue'
-import { supabase } from '../lib/supabaseClient'
-
-const employees = ref([])
-
-async function getEmployees() {
-  const { data } = await supabase.from('Employees').select()
-  employees.value = data
-}
-onMounted(() => getEmployees())
-</script>
-
-<template>
-  <ul>
-    <li v-for="employee in employees" :key="employee.id">{{ employee.Employee }}</li>
-  </ul>
-</template>
-<style scoped>
-li {
-  font-size: 100px;
-}
-</style>
- -->
 <script setup>
 import { ref, onMounted } from 'vue'
 import { supabase } from '../lib/supabaseClient'
@@ -45,7 +21,14 @@ onMounted(() => {
 </script>
 
 <template>
-  <ul>
-    <li v-for="employee in Data" :key="employee.id">{{ employee.name }}</li>
-  </ul>
+  <div class="card" v-for="employee in Data" :key="employee.id">
+    <h1>Employee ID : {{ employee.id }}</h1>
+    <h2>Employee Name : {{ employee.name }}</h2>
+  </div>
 </template>
+
+<!-- <ul>
+    <li v-for="employee in Data" :key="employee.id">
+      ID : {{ employee.id }}, Name {{ employee.name }}
+    </li>
+  </ul> -->
