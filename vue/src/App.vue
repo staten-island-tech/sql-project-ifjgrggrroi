@@ -2,6 +2,7 @@
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
 import HomeView from './views/HomeView.vue'
+import LoginScreen from './components/loginScreen.vue'
 </script>
 
 <template>
