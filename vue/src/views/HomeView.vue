@@ -12,7 +12,7 @@ onMounted(() => getEmployees())
 </script>
 
 <template>
-  <ul>
+  <ul></ul>
     <li v-for="employee in employees" :key="employee.id">{{ employee.Employee }}</li>
   </ul>
 </template>
