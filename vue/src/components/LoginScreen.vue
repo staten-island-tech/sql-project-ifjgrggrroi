@@ -8,17 +8,24 @@
       <div><label>Password</label></div>
 
       <input type="password" />
-      <div><button type="submit">Login</button></div>
+      <div><button type="submit" @clicked="login">Login</button></div>
     </form>
   </div>
 </template>
 
-<script setup>
-/* import { useUserStore } from '../stores/userStore'
+<script>
+import { useUserStore } from '../stores/userStore'
 import { useAuthStore } from '../stores/auth-store'
 
-const store = useUserStore()
-const authStore = useAuthStore()
+export default {
+  data: { useAuthStore },
+  methods: {
+    login() {
+      this.useAuthStore.user = user.name
+      this.useAuthStore.loggedIn = true
+    }
+  }
+}
 
 const loginHag = () => {
   const { email, password } = event.target.elements
