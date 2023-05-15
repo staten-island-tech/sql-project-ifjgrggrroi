@@ -6,9 +6,7 @@ import LoginScreen from './components/loginScreen.vue'
 
 <template>
   <div class="wrapper">
-    <nav>
-      <RouterLink to="/login">Login</RouterLink>
-    </nav>
+    <nav></nav>
   </div>
   <RouterView />
 </template>

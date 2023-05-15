@@ -1,35 +1,41 @@
 <template>
   <h1 class="heading">Login</h1>
   <div class="form-wrapper">
-    <form>
+    <form @submit.prevent="loginHag">
       <div><label>Email</label></div>
 
-      <input type="email" />
+      <input type="email" v-model="email" />
       <div><label>Password</label></div>
 
-      <input type="password" />
-      <div><button type="submit" @clicked="login">Login</button></div>
+      <input type="password" v-model="password" />
+      <div><button type="submit">Login</button></div>
     </form>
   </div>
 </template>
 
 <script>
-import { useUserStore } from '../stores/userStore'
 import { useAuthStore } from '../stores/auth-store'
-
 export default {
-  data: { useAuthStore },
+  data() {
+    return {
+      email: '',
+      password: ''
+    }
+  },
+
   methods: {
-    login() {
-      this.useAuthStore.user = user.name
-      this.useAuthStore.loggedIn = true
+    loginHag(e) {
+      const auth = useAuthStore()
+      e.preventDefault()
+      if (this.email === 'annie@gmail.com' && this.password === 'password') {
+        auth.login()
+        console.log('correct')
+        this.$router.push('/dashboard')
+      } else {
+        console.log('incorrect')
+      }
     }
   }
-}
-
-const loginHag = () => {
-  const { email, password } = event.target.elements
-  console.log(email.value, password.value)
 }
 </script>
 
