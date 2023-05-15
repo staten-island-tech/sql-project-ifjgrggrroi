@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { supabase } from '../lib/supabaseClient'
+// import { fireBtn } from '../fireBtn.js'
 
 const Data = ref('')
 
@@ -14,12 +15,32 @@ async function getData() {
     console.log(error)
   }
 }
+
+async function fire() {
+  try {
+    let { data: alldata, error } = await supabase.from('alldata').delete().eq('id', '6')
+    Data.value = alldata
+    console.log(alldata)
+
+    console.log('hello')
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 onMounted(() => {
   getData()
 })
-
 // this.alldata = this.alldata.filter((t) => t !== name)
 </script>
+
+<!-- document.getElementsByClassName('btn').addEventListener('click', Fire)
+  
+  function Fire() {
+console.log('helllo') } 
+
+const {(data, error)} = await supabase.from('alldata').delete().eq('name',
+'annie sr') -->
 
 <template>
   <div class="parent">
@@ -28,7 +49,7 @@ onMounted(() => {
       <h2>Employee ID : {{ alldata.id }}</h2>
       <h2>Employee Location : {{ alldata.location }}</h2>
       <h2>Employee Pay : ${{ alldata.pay }}</h2>
-      <button class="btn">FIRE</button>
+      <button @click="fire()" class="btn">FIRE</button>
     </div>
   </div>
 </template>
