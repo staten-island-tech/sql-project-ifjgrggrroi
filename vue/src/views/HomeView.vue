@@ -1,4 +1,5 @@
 <script setup>
+// import { METHODS } from 'http'
 import { ref, onMounted } from 'vue'
 import { supabase } from '../lib/supabaseClient'
 // import { fireBtn } from '../fireBtn.js'
@@ -16,9 +17,13 @@ async function getData() {
   }
 }
 
-async function fire() {
+async function fire(event) {
   try {
-    let { data: alldata, error } = await supabase.from('alldata').delete().eq('id', '5')
+    let { data: alldata, error } = await supabase
+      .from('alldata')
+      .delete()
+      .eq('id', event.target.parentElement.remove())
+
     getData()
     Data.value = alldata
     console.log(alldata)
@@ -33,14 +38,6 @@ onMounted(() => {
 // this.alldata = this.alldata.filter((t) => t !== name)
 </script>
 
-<!-- document.getElementsByClassName('btn').addEventListener('click', Fire)
-  
-  function Fire() {
-console.log('helllo') } 
-
-const {(data, error)} = await supabase.from('alldata').delete().eq('name',
-'annie sr') -->
-
 <template>
   <h1 class="header">Employee profiles</h1>
 
@@ -50,7 +47,7 @@ const {(data, error)} = await supabase.from('alldata').delete().eq('name',
       <h2>Location : {{ alldata.location }}</h2>
       <h2>ID : {{ alldata.id }}</h2>
       <h2>Pay : ${{ alldata.pay }}</h2>
-      <button @click="fire()" class="btn">FIRE</button>
+      <button @click="fire(event)" class="btn">FIRE</button>
     </div>
   </div>
 </template>
