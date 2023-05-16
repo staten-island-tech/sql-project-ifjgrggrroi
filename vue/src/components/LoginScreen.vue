@@ -1,14 +1,12 @@
 <template>
   <h1 class="heading">Login</h1>
   <div class="form-wrapper">
-    <form @submit.prevent="loginHag">
-      <div><label>Email</label></div>
+    <form @submit="loginHag">
+      <input type="email" v-model="email" placeholder="Email" required />
 
-      <input type="email" v-model="email" />
-      <div><label>Password</label></div>
-
-      <input type="password" v-model="password" />
+      <input type="password" v-model="password" placeholder="Password" required />
       <div><button type="submit">Login</button></div>
+      <p>{{ incorrect }}</p>
     </form>
   </div>
 </template>
@@ -19,7 +17,8 @@ export default {
   data() {
     return {
       email: '',
-      password: ''
+      password: '',
+      incorrect: ''
     }
   },
 
@@ -33,6 +32,7 @@ export default {
         this.$router.push('/dashboard')
       } else {
         console.log('incorrect')
+        this.incorrect = 'Incorrect username or password. Please try again.'
       }
     }
   }
@@ -42,7 +42,7 @@ export default {
 <style>
 html,
 body {
-  background-color: rgb(255, 219, 228);
+  background-color: rgb(255, 255, 255);
 }
 
 .heading {
@@ -54,7 +54,7 @@ body {
   width: 25rem;
   height: 30rem;
   margin: auto;
-  background-color: white;
+  background-color: aliceblue;
   border-radius: 2rem;
   text-align: center;
 }
@@ -66,10 +66,15 @@ form {
 
 input {
   border-radius: 2rem;
-  height: 2rem;
+  height: 2.5rem;
   width: 15rem;
   border: solid;
   border-color: black;
   border-width: 1px;
+  padding-left: 1.5rem;
+  margin-top: 2rem;
+}
+p {
+  font-size: 1rem;
 }
 </style>
