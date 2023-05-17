@@ -6,6 +6,7 @@
 
       <input type="password" v-model="password" placeholder="Password" required />
       <div><button type="submit">Login</button></div>
+      <router-link to="/signup">Create Account Here</router-link>
       <p>{{ incorrect }}</p>
     </form>
   </div>
@@ -13,6 +14,7 @@
 
 <script>
 import { useAuthStore } from '../stores/auth-store'
+import { supabase } from '../lib/supabaseClient.js'
 export default {
   data() {
     return {
@@ -23,17 +25,11 @@ export default {
   },
 
   methods: {
-    loginHag(e) {
+    async loginHag(e) {
       const auth = useAuthStore()
       e.preventDefault()
-      if (this.email === 'annie@gmail.com' && this.password === 'password') {
-        auth.login()
-        console.log('correct')
-        this.$router.push('/dashboard')
-      } else {
-        console.log('incorrect')
-        this.incorrect = 'Incorrect username or password. Please try again.'
-      }
+      await auth.login(this.email, this.password)
+      this.$router.push('/dashboard')
     }
   }
 }
