@@ -5,7 +5,7 @@
       <h2>Location : {{ alldata.location }}</h2>
       <h2>ID : {{ alldata.id }}</h2>
       <h2>Pay : ${{ alldata.pay }}</h2>
-      <button @click="fire(event)" class="btn">FIRE</button>
+      <button class="btn">FIRE</button>
     </div>
   </div>
 </template>
@@ -16,7 +16,9 @@ const props = defineProps({
   id: Number
 })
 
-async function fire(event) {
+/* <button @click="fire(event)" class="btn">FIRE</button> */
+
+/* async function fire(event) {
   try {
     let { data: alldata, error } = await supabase
       .from('alldata')
@@ -29,7 +31,7 @@ async function fire(event) {
   } catch (error) {
     console.log(error)
   }
-}
+} */
 </script>
 
 <!-- <div class="card" v-for="alldata in Data" :key="alldata.id">
@@ -38,7 +40,8 @@ async function fire(event) {
     <h2>ID : {{ alldata.id }}</h2>
     <h2>Pay : ${{ alldata.pay }}</h2>
     <button @click="fire(event)" class="btn">FIRE</button>
-  </div> -->
+  </div>
+-->
 
 <style scoped>
 .parent {

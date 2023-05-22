@@ -1,7 +1,16 @@
 <template>
   <h1 class="header">Employee profiles</h1>
+  <!-- <EmployeeCard v-for="alldata in Data" :key="alldata.id" :Data="alldata" /> -->
 
-  <EmployeeCard v-for="alldata in Data" :key="alldata.id" :Data="alldata" />
+  <div class="parent">
+    <div class="card" v-for="alldata in Data" :key="alldata.id" :Data="alldata">
+      <h1>Name : {{ alldata.name }}</h1>
+      <h2>Location : {{ alldata.location }}</h2>
+      <h2>ID : {{ alldata.id }}</h2>
+      <h2>Pay : ${{ alldata.pay }}</h2>
+      <button class="btn">FIRE</button>
+    </div>
+  </div>
 </template>
 
 <script setup>
@@ -10,6 +19,7 @@ import { supabase } from '../lib/supabaseClient'
 import EmployeeCard from '../components/EmployeeCard.vue'
 
 const Data = ref('')
+
 async function getData() {
   try {
     let { data: alldata, error } = await supabase.from('alldata').select('*')
@@ -20,11 +30,15 @@ async function getData() {
     console.log(error)
   }
 }
+
 onMounted(() => {
   getData()
 })
-// this.alldata = this.alldata.filter((t) => t !== name)
 </script>
+
+<!-- this.alldata = this.alldata.filter((t) => t !== name) -->
+
+<!-- <EmployeeCard v-for="alldata in Data" :key="alldata.id" :Data="alldata" /> -->
 
 <style>
 .header {
