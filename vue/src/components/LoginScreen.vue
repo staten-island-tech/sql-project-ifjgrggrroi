@@ -15,6 +15,8 @@
 <script>
 import { useAuthStore } from '../stores/auth-store'
 import { supabase } from '../lib/supabaseClient.js'
+import { useUserStore } from '../stores/user-store'
+import { userInfo } from 'os'
 export default {
   data() {
     return {
@@ -28,7 +30,13 @@ export default {
     async loginHag(e) {
       const auth = useAuthStore()
       e.preventDefault()
-      await auth.login(this.email, this.password)
+
+      let { data: users, error } = await supabase.from('users').select('*')
+
+      if (this.email === users.email && this.password === users.password) {
+        await auth.login(this.email, this.password)
+      }
+
       this.$router.push('/dashboard')
     }
   }
