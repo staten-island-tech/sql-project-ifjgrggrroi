@@ -1,7 +1,8 @@
 <template>
   <h1 class="header">Employee profiles</h1>
-  <EmployeeCard v-for="(dat, index) in Data" :key="dat.id" :id="index + 1" :Data="dat" />
-
+  <div class="parent">
+    <EmployeeCard v-for="(dat, index) in Data" :key="dat.id" :id="index + 1" :Data="dat" />
+  </div>
   <!-- <div class="parent">
     <div class="card" v-for="alldata in Data" :key="alldata.id" :Data="alldata">
       <h1>Name : {{ alldata.name }}</h1>
@@ -45,5 +46,16 @@ onMounted(() => {
   font-size: 6.5rem;
   margin-top: 2.5rem;
   text-align: center;
+  margin: auto;
+}
+
+.parent {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  margin: auto;
+  width: 75vw;
 }
 </style>

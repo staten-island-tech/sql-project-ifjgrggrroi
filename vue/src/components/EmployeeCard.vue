@@ -1,12 +1,10 @@
 <template>
-  <div class="parent">
-    <div class="card">
-      <h1>Name : {{ Data.name }}</h1>
-      <h2>Location : {{ Data.location }}</h2>
-      <h2>ID : {{ Data.id }}</h2>
-      <h2>Pay : ${{ Data.pay }}</h2>
-      <button class="btn">FIRE</button>
-    </div>
+  <div class="card">
+    <h1>Name : {{ Data.name }}</h1>
+    <h2>Location : {{ Data.location }}</h2>
+    <h2>ID : {{ Data.id }}</h2>
+    <h2>Pay : ${{ Data.pay }}</h2>
+    <button class="btn">FIRE</button>
   </div>
 </template>
 
@@ -44,20 +42,10 @@ const props = defineProps({
 -->
 
 <style scoped>
-.parent {
-  display: flex;
-  align-items: flex-start;
-  flex-direction: row;
-  flex-wrap: wrap;
-  margin: auto;
-  width: 100%;
-  text-align: center;
-}
 .card {
   font-size: 16px;
-  width: 32rem;
+  width: 25rem;
   background-color: aliceblue;
-  margin: auto;
   margin-top: 3rem;
   padding: 1rem;
   text-align: center;
