@@ -1,10 +1,10 @@
 <template>
   <div class="parent">
     <div class="card">
-      <h1>Name : {{ alldata.name }}</h1>
-      <h2>Location : {{ alldata.location }}</h2>
-      <h2>ID : {{ alldata.id }}</h2>
-      <h2>Pay : ${{ alldata.pay }}</h2>
+      <h1>Name : {{ Data.name }}</h1>
+      <h2>Location : {{ Data.location }}</h2>
+      <h2>ID : {{ Data.id }}</h2>
+      <h2>Pay : ${{ Data.pay }}</h2>
       <button class="btn">FIRE</button>
     </div>
   </div>
@@ -12,7 +12,7 @@
 
 <script setup>
 const props = defineProps({
-  alldata: Object,
+  Data: Object,
   id: Number
 })
 
