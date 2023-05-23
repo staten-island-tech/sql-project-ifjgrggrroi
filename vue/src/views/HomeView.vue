@@ -1,7 +1,7 @@
 <template>
   <h1 class="header">Employee profiles</h1>
   <div class="parent">
-    <EmployeeCard v-for="(dat, index) in Data" :key="dat.id" :id="index + 1" :Data="dat" />
+    <EmployeeCard v-for="dat in Data" :key="dat.id" :Data="dat" />
   </div>
   <!-- <div class="parent">
     <div class="card" v-for="alldata in Data" :key="alldata.id" :Data="alldata">
@@ -26,6 +26,18 @@ async function getData() {
     let { data: alldata, error } = await supabase.from('alldata').select('*')
 
     Data.value = await alldata
+    console.log(alldata)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+async function fire(event) {
+  try {
+    const { data: alldata, error } = await supabase.from('alldata').delete().eq('id', 'annie')
+
+    getData()
+    Data.value = alldata
     console.log(alldata)
   } catch (error) {
     console.log(error)

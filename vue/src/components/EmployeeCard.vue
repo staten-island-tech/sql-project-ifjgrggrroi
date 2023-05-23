@@ -4,42 +4,22 @@
     <h2>Location : {{ Data.location }}</h2>
     <h2>ID : {{ Data.id }}</h2>
     <h2>Pay : ${{ Data.pay }}</h2>
-    <button class="btn">FIRE</button>
+    <button @click="fire(event)" class="btn">FIRE</button>
   </div>
 </template>
 
 <script setup>
 const props = defineProps({
   Data: Object,
-  id: Number
-})
-
-/* <button @click="fire(event)" class="btn">FIRE</button> */
-
-/* async function fire(event) {
-  try {
-    let { data: alldata, error } = await supabase
-      .from('alldata')
-      .delete()
-      .eq('id', event.target.parentElement.remove())
-
-    getData()
-    Data.value = alldata
-    console.log(alldata)
-  } catch (error) {
-    console.log(error)
+  id: Number,
+  fire: {
+    type: Function
   }
-} */
+})
 </script>
 
-<!-- <div class="card" v-for="alldata in Data" :key="alldata.id">
-    <h1>Name : {{ alldata.name }}</h1>
-    <h2>Location : {{ alldata.location }}</h2>
-    <h2>ID : {{ alldata.id }}</h2>
-    <h2>Pay : ${{ alldata.pay }}</h2>
-    <button @click="fire(event)" class="btn">FIRE</button>
-  </div>
--->
+<!-- let { data: alldata, error } = await supabase .from('alldata') .delete() .eq('id',
+event.target.parentElement.remove()) -->
 
 <style scoped>
 .card {
