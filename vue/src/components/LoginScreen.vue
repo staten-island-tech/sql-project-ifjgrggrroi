@@ -16,7 +16,6 @@
 import { useAuthStore } from '../stores/auth-store'
 import { supabase } from '../lib/supabaseClient.js'
 import { useUserStore } from '../stores/user-store'
-import { userInfo } from 'os'
 export default {
   data() {
     return {
@@ -35,9 +34,11 @@ export default {
 
       if (this.email === users.email && this.password === users.password) {
         await auth.login(this.email, this.password)
-      }
 
-      this.$router.push('/dashboard')
+        this.$router.push('/dashboard')
+      } else {
+        console.log('incorrect')
+      }
     }
   }
 }
