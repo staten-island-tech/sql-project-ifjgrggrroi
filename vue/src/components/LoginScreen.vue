@@ -29,15 +29,9 @@ export default {
     async loginHag(e) {
       const auth = useAuthStore()
       e.preventDefault()
-
-      let { data: users, error } = await supabase.from('users').select('*')
-
-      if (this.email === users.email && this.password === users.password) {
+      if (this.email === 'manager@teahouse.com' && this.password === 'password') {
         await auth.login(this.email, this.password)
-
-        this.$router.push('/dashboard')
-      } else {
-        console.log('incorrect')
+        this.$router.replace('/dashboard')
       }
     }
   }
