@@ -4,17 +4,17 @@
     <h2>Location : {{ Data.location }}</h2>
     <h2>ID : {{ Data.id }}</h2>
     <h2>Pay : ${{ Data.pay }}</h2>
-    <button @click="fire(event)" class="btn">FIRE</button>
+    <button @click="fire()" class="btn">FIRE</button>
   </div>
 </template>
 
 <script setup>
 const props = defineProps({
   Data: Object,
-  id: Number,
-  fire: {
-    type: Function
-  }
+  id: Number
+  //   fire: {
+  //     type: Function
+  //   }
 })
 </script>
 

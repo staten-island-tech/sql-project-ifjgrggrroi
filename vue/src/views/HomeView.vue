@@ -1,8 +1,12 @@
 <template>
-  <h1 class="header">Employee profiles</h1>
-  <div class="parent">
-    <EmployeeCard v-for="dat in Data" :key="dat.id" :Data="dat" />
+  <div class="app">
+    <h1 class="header">Employee profiles</h1>
+    <div class="parent">
+      <EmployeeCard v-for="dat in Data" :key="dat.id" :Data="dat" />
+    </div>
+    <button class="Btn">Add Employee</button>
   </div>
+
   <!-- <div class="parent">
     <div class="card" v-for="alldata in Data" :key="alldata.id" :Data="alldata">
       <h1>Name : {{ alldata.name }}</h1>
@@ -32,9 +36,9 @@ async function getData() {
   }
 }
 
-async function fire(event) {
+async function fire() {
   try {
-    const { data: alldata, error } = await supabase.from('alldata').delete().eq('id', 'annie')
+    const { data: alldata, error } = await supabase.from('alldata').delete().eq('id', '1')
 
     getData()
     Data.value = alldata
@@ -46,6 +50,7 @@ async function fire(event) {
 
 onMounted(() => {
   getData()
+  fire()
 })
 </script>
 
@@ -54,6 +59,10 @@ onMounted(() => {
 <!-- <EmployeeCard v-for="alldata in Data" :key="alldata.id" :Data="alldata" /> -->
 
 <style>
+.app {
+  text-align: center;
+}
+
 .header {
   font-size: 6.5rem;
   margin-top: 2.5rem;
@@ -63,11 +72,22 @@ onMounted(() => {
 
 .parent {
   display: flex;
-  justify-content: space-between;
-  flex-direction: row;
   flex-wrap: wrap;
+  justify-content: space-evenly;
+  flex-direction: row;
   align-items: flex-start;
   margin: auto;
-  width: 75vw;
+  width: 80vw;
+  /* width: 75vw; */
+}
+
+.Btn {
+  border-radius: 2rem;
+  font-size: 2.2rem;
+  background-color: aliceblue;
+  padding: 5px 15px 5px 15px;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  text-align: center;
 }
 </style>
