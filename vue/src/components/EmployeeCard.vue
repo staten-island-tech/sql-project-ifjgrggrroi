@@ -4,18 +4,37 @@
     <h2>Location : {{ Data.location }}</h2>
     <h2>ID : {{ Data.id }}</h2>
     <h2>Pay : ${{ Data.pay }}</h2>
-    <button @click="fire()" class="btn">FIRE</button>
+    <button @click="fire" class="btn">FIRE</button>
   </div>
 </template>
 
-<script setup>
-const props = defineProps({
-  Data: Object,
-  id: Number
-  //   fire: {
-  //     type: Function
-  //   }
-})
+<script>
+// import { ref, onMounted } from 'vue'
+import { supabase } from '../lib/supabaseClient'
+
+export default {
+  props: {
+    Data: Object,
+    id: Number
+  },
+  // Data: ref(''),
+  async DATA() {
+    let { data: alldata, error } = await supabase.from('alldata').select('*')
+
+    Data.value = await alldata
+    console.log(alldata)
+    //this console is not working
+  },
+  methods: {
+    async fire() {
+      const { data: alldata, error } = await supabase.from('alldata').delete().eq('id', '2')
+
+      Data.value = await alldata
+      console.log('alldata')
+      //this console is not working
+    }
+  }
+}
 </script>
 
 <!-- let { data: alldata, error } = await supabase .from('alldata') .delete() .eq('id',

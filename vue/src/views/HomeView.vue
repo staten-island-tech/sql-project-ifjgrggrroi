@@ -36,9 +36,9 @@ async function getData() {
   }
 }
 
-async function fire() {
+/* async function fire() {
   try {
-    const { data: alldata, error } = await supabase.from('alldata').delete().eq('id', '1')
+    const { data: alldata, error } = await supabase.from('alldata').delete().eq('id', '3')
 
     getData()
     Data.value = alldata
@@ -46,11 +46,10 @@ async function fire() {
   } catch (error) {
     console.log(error)
   }
-}
+} */
 
 onMounted(() => {
   getData()
-  fire()
 })
 </script>
 
