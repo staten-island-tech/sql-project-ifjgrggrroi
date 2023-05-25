@@ -18,7 +18,8 @@ export default {
   data() {
     return {
       email: '',
-      password: ''
+      password: '',
+      id: 0
     }
   },
 
@@ -29,10 +30,11 @@ export default {
       const userStore = useUserStore()
       const user = {
         email: this.email,
-        password: this.password
+        password: this.password,
+        id: this.id++
       }
 
-      await auth.createAccount(this.email, this.password)
+      await auth.createAccount(this.email, this.password, this.id)
       await userStore.createUser(user)
       this.$router.push('/login')
     }

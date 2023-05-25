@@ -1,7 +1,7 @@
 <template>
   <h1 class="heading">Login</h1>
   <div class="form-wrapper">
-    <form @submit="loginHag">
+    <form @submit="login">
       <input type="email" v-model="email" placeholder="Email" required />
 
       <input type="password" v-model="password" placeholder="Password" required />
@@ -26,7 +26,7 @@ export default {
   },
 
   methods: {
-    async loginHag(e) {
+    async login(e) {
       const auth = useAuthStore()
       e.preventDefault()
 
