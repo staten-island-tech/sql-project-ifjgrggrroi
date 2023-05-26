@@ -9,7 +9,7 @@
 </template>
 
 <script>
-// import { ref, onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
 import { supabase } from '../lib/supabaseClient'
 
 export default {
@@ -17,21 +17,21 @@ export default {
     Data: Object,
     id: Number
   },
-  // Data: ref(''),
-  async DATA() {
+
+  Data: ref(''),
+  async getdata() {
     let { data: alldata, error } = await supabase.from('alldata').select('*')
 
     Data.value = await alldata
     console.log(alldata)
-    //this console is not working
   },
+
   methods: {
     async fire() {
       const { data: alldata, error } = await supabase.from('alldata').delete().eq('id', '2')
 
       Data.value = await alldata
       console.log('alldata')
-      //this console is not working
     }
   }
 }
