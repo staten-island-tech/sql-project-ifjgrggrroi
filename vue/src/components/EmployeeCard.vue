@@ -8,33 +8,24 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import { ref, onMounted } from 'vue'
 import { supabase } from '../lib/supabaseClient'
 
-export default {
-  props: {
-    Data: Object,
-    id: Number
-  },
-
-  Data: ref(''),
+const props = defineProps({
+  Data: Object,
+  id: Number,
+})
+ async fire() {
+      const { data: alldata, error } = await supabase.from('alldata').delete().eq('id', '4')
+    }
+  /*   Data: ref(''),
   async getdata() {
     let { data: alldata, error } = await supabase.from('alldata').select('*')
 
     Data.value = await alldata
     console.log(alldata)
-  },
-
-  methods: {
-    async fire() {
-      const { data: alldata, error } = await supabase.from('alldata').delete().eq('id', '2')
-
-      Data.value = await alldata
-      console.log('alldata')
-    }
-  }
-}
+  }, */
 </script>
 
 <!-- let { data: alldata, error } = await supabase .from('alldata') .delete() .eq('id',
