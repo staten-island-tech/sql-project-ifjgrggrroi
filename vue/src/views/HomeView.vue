@@ -1,6 +1,6 @@
 <template>
   <div class="app">
-    <h1 class="header">Employee profiles</h1>
+    <h1 class="header">Employees</h1>
     <div class="parent">
       <EmployeeCard v-for="dat in Data" :key="dat.id" :Data="dat" />
     </div>
@@ -34,6 +34,12 @@ async function getData() {
   } catch (error) {
     console.log(error)
   }
+
+  /*   function fire(e) {
+    e.target.parentElement.remove()
+    let target = e.target.parentElement.id
+    console.log(target)
+  } */
 }
 
 /* async function fire() {
@@ -64,7 +70,7 @@ onMounted(() => {
 
 .header {
   font-size: 6.5rem;
-  margin-top: 2.5rem;
+  padding-top: 3.5rem;
   text-align: center;
   margin: auto;
 }

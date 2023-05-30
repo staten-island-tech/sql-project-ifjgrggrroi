@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div :id="Data.id" class="card">
     <h1>Name : {{ Data.name }}</h1>
     <h2>Location : {{ Data.location }}</h2>
     <h2>ID : {{ Data.id }}</h2>
@@ -14,12 +14,30 @@ import { supabase } from '../lib/supabaseClient'
 
 const props = defineProps({
   Data: Object,
-  id: Number,
+  id: Number
 })
- async fire() {
-      const { data: alldata, error } = await supabase.from('alldata').delete().eq('id', '4')
+async function fire(e) {
+  //e.target.parentElement.remove()
+  let target = e.target.parentElement.id
+  //console.log(target)
+
+  const { data, error } = await supabase.from('alldata').delete().eq('id', target)
+  e.target.parentElement.remove()
+  const Data = ref('')
+
+  async function getData() {
+    try {
+      let { data: alldata, error } = await supabase.from('alldata').select('*')
+
+      Data.value = await alldata
+    } catch (error) {
+      console.log(error)
     }
-  /*   Data: ref(''),
+  }
+  getData()
+}
+
+/*   Data: ref(''),
   async getdata() {
     let { data: alldata, error } = await supabase.from('alldata').select('*')
 
@@ -43,8 +61,17 @@ event.target.parentElement.remove()) -->
 }
 .btn {
   border-radius: 2rem;
-  font-size: 2rem;
-  background-color: aliceblue;
-  padding: 5px 15px 5px 15px;
+  border: solid, 1.5px;
+  border-color: black;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: rgb(255, 52, 52);
+  background-color: rgb(255, 255, 255);
+  width: 5.5rem;
+  height: 2.5rem;
+}
+.btn:hover{
+  color: rgb(255, 255, 255);
+  background-color: rgb(255, 52, 52);
 }
 </style>
