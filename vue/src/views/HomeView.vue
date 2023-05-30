@@ -4,7 +4,8 @@
     <div class="parent">
       <EmployeeCard v-for="dat in Data" :key="dat.id" :Data="dat" />
     </div>
-    <button @click="addData" class="Btn">Add Employee</button>
+    <button class="Btn">Add An Employee</button>
+    <!-- <button @click="addData" class="Btn">Add Employee</button> -->
   </div>
 
   <!-- <div class="parent">
@@ -38,19 +39,14 @@ async function getData() {
 
 async function addData() {
   try {
-    const { data, error } = await supabase
-  .from('alldata')
-  .insert([
-    { id: '11' },
-    { location: 'Staten Island' },
-    { name: 'angelaW' },
-    { pay: '40' },
-  ])
-
-
+    let { data, error } = await supabase
+      .from('alldata')
+      .insert({ id: '14', location: 'Brooklyn', name: 'angelaWang', pay: '25' })
+    getData()
+    console.log('added')
+  } catch (error) {
+    console.log(error)
   }
-
-
 }
 
 /* async function fire() {
