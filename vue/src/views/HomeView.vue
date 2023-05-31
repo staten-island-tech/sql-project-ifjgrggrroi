@@ -6,7 +6,6 @@
     </div>
     <button class="Btn">Add Employee</button>
   </div>
-
   <!-- <div class="parent">
     <div class="card" v-for="alldata in Data" :key="alldata.id" :Data="alldata">
       <h1>Name : {{ alldata.name }}</h1>
@@ -22,6 +21,7 @@
 import { ref, onMounted } from 'vue'
 import { supabase } from '../lib/supabaseClient'
 import EmployeeCard from '../components/EmployeeCard.vue'
+import UpdateEmployee from '../components/UpdateEmployee.vue'
 
 const Data = ref('')
 

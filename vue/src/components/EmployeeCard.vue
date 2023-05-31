@@ -1,9 +1,9 @@
 <template>
   <div :id="Data.id" class="card">
-    <h1>Name : {{ Data.name }}</h1>
-    <h2>Location : {{ Data.location }}</h2>
-    <h2>ID : {{ Data.id }}</h2>
-    <h2>Pay : ${{ Data.pay }}</h2>
+    <h1>Name: {{ Data.name }}</h1>
+    <h2>Location: {{ Data.location }}</h2>
+    <h2>ID: {{ Data.id }}</h2>
+    <h2>Pay: ${{ Data.pay }}</h2>
     <button @click="fire" class="btn">FIRE</button>
   </div>
 </template>
@@ -70,7 +70,7 @@ event.target.parentElement.remove()) -->
   width: 5.5rem;
   height: 2.5rem;
 }
-.btn:hover{
+.btn:hover {
   color: rgb(255, 255, 255);
   background-color: rgb(255, 52, 52);
 }
