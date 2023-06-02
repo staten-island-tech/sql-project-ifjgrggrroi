@@ -1,29 +1,34 @@
 <template>
   <button class="Btn" @click="reroute">Back To Home Page</button>
 
+  <h1 class="header">Add an Employee</h1>
+
   <form id="form">
     <div class="parent">
       <div class="form inputs">
         <div class="form-input">
-          <label for="id" class="text">ID: </label>
-          <input type="text" id="id" class="text-box" required />
+          <label for="ID" class="text">ID</label>
+          <input type="number" min="0" id="id" class="text-box" placeholder="Enter a Number" />
         </div>
 
         <div class="form-input">
-          <label for="name" class="text">Name: </label>
-          <input type="text" id="name" class="text-box" required />
+          <label for="name" class="text">Name</label>
+          <input type="text" id="name" class="text-box" placeholder="Enter a Name" />
         </div>
 
         <div class="form-input">
-          <label for="loation" class="text">Location: </label>
-          <input type="text" id="location" class="text-box" required />
+          <label for="location" class="text">Location</label>
+          <input type="text" id="location" class="text-box" placeholder="Enter a Place" />
         </div>
 
         <div class="form-input">
-          <label for="pay" class="text">Pay: </label>
-          <input type="text" id="pay" class="text-box" required />
+          <label for="pay" class="text">Pay</label>
+          <input type="number" min="0" id="pay" class="text-box" placeholder="Enter a Number" />
         </div>
       </div>
+    </div>
+    <div class="submit">
+      <input @click="addData" type="submit" value="Submit" class="Button" />
     </div>
   </form>
 
@@ -36,6 +41,7 @@
 
 <script setup>
 import { routerKey, useRouter } from 'vue-router'
+import { supabase } from '../lib/supabaseClient'
 
 const router = useRouter()
 
@@ -45,7 +51,26 @@ function reroute() {
 </script>
 
 <script>
-function newEmployee() {}
+function newEmployee() {
+  let ID
+  let Name
+  let Location
+  let Pay
+}
+
+async function addData() {
+  try {
+    let { data, error } = await supabase
+      .from('alldata')
+      .insert({ id: '12', location: 'Brooklyn', name: 'angelaWang', pay: '25' })
+    getData()
+    console.log('added')
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+// }
 
 /* function myFunction() {
   let text
@@ -60,6 +85,23 @@ function newEmployee() {}
 </script>
 
 <style>
+.header {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.submit {
+  text-align: center;
+}
+
+.Button {
+  border-radius: 2rem;
+  font-size: 1.5rem;
+  background-color: aliceblue;
+  padding: 5px 15px 5px 15px;
+  width: 15%;
+}
+
 .Btn {
   border-radius: 2rem;
   font-size: 2.2rem;
@@ -71,14 +113,12 @@ function newEmployee() {}
   text-align: center;
 }
 
-.parent {
-  text-align: center;
-}
-
-.form-input {
+.form-inputs {
   text-align: left;
-  margin-bottom: 1rem;
   width: 14rem;
+}
+.form-input {
+  margin-bottom: 1rem;
 }
 
 .text {
@@ -87,8 +127,8 @@ function newEmployee() {}
 
 .text-box {
   padding: 0.5rem;
-  font-size: 2rem;
-  width: 20rem;
+  width: 100%;
+  align-items: center;
 }
 
 .btn {

@@ -39,18 +39,6 @@ async function getData() {
   }
 }
 
-async function addData() {
-  try {
-    let { data, error } = await supabase
-      .from('alldata')
-      .insert({ id: '14', location: 'Brooklyn', name: 'angelaWang', pay: '25' })
-    getData()
-    console.log('added')
-  } catch (error) {
-    console.log(error)
-  }
-}
-
 function reroute() {
   router.push({ path: '/AddEmployee' })
 }
