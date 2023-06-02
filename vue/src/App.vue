@@ -16,6 +16,7 @@ import HomeView from './views/HomeView.vue'
         <RouterLink to="/about">About</RouterLink>
       </nav>
     </div> -->
+    <RouterLink to="/update">Update</RouterLink>
   </header>
   <RouterView />
 </template>

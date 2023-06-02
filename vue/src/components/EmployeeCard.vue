@@ -2,13 +2,8 @@
   <div :id="Data.id" class="card">
     <h1>Name: {{ Data.name }}</h1>
     <h2>Location: {{ Data.location }}</h2>
-<<<<<<< Updated upstream
     <h2>ID: {{ Data.id }}</h2>
     <h2>Pay: ${{ Data.pay }}</h2>
-=======
-    <h2>Id: {{ Data.id }}</h2>
-    <h2>Pay: ${{ Data.pay }}/hour</h2>
->>>>>>> Stashed changes
     <button @click="fire" class="btn">FIRE</button>
   </div>
 </template>
