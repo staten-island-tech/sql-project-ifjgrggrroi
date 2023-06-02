@@ -6,6 +6,7 @@
     </div>
     <button class="Btn">Add Employee</button>
   </div>
+  <UpdateEmployee></UpdateEmployee>
   <!-- <div class="parent">
     <div class="card" v-for="alldata in Data" :key="alldata.id" :Data="alldata">
       <h1>Name : {{ alldata.name }}</h1>
