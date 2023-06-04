@@ -16,10 +16,9 @@ const props = defineProps({
   Data: Object,
   id: Number
 })
+
 async function fire(e) {
-  //e.target.parentElement.remove()
   let target = e.target.parentElement.id
-  //console.log(target)
 
   const { data, error } = await supabase.from('Pay').delete().eq('id', target)
   e.target.parentElement.remove()

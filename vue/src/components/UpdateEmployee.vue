@@ -1,10 +1,16 @@
 <template>
   <button class="Btn" @click="Reroute2">Back To Home Page</button>
-  <div v-for="dat in Data" :key="dat.id" :Data="dat">
-    <h1>Update Employee</h1>
-    <p><strong>Name:</strong> {{ dat.name }}</p>
-    <p><strong>ID:</strong> {{ dat.id }}</p>
-    <p><strong>Salary:</strong><input /></p>
+
+  <div class="parent">
+    <div v-for="dat in Data" :key="dat.id" :Data="dat" class="card">
+      <h1 class="text">Update Employee</h1>
+      <p class="text"><strong>Name: </strong> {{ dat.name }}</p>
+      <p class="text"><strong>ID: </strong> {{ dat.id }}</p>
+      <p class="text"><strong>Salary: </strong> <input /></p>
+      <p>
+        <strong><button class="btn" @click="Update">Submit</button></strong>
+      </p>
+    </div>
   </div>
 </template>
 
@@ -16,6 +22,7 @@ import { supabase } from '../lib/supabaseClient'
 const router = useRouter()
 
 const Data = ref('')
+
 async function getData() {
   try {
     let { data: alldata, error } = await supabase.from('alldata').select('*')
@@ -28,12 +35,34 @@ async function getData() {
 }
 getData()
 
+async function Update(e) {
+  let target = e.target.parentElement.id
+  // let pay = 100
+
+  const { data, error } = await supabase.from('Pay').update({ pay: '100' }).eq('id', target)
+  // e.target.parentElement.update()
+  console.log('Updated')
+}
+
+/* const { data, error } = await supabase.from('Pay').update({ pay: '100' }).eq('id', '1') */
+
 function Reroute2() {
   router.push({ path: '/' })
 }
 </script>
 
 <style scoped>
+.parent {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  flex-direction: row;
+  align-items: flex-start;
+  margin: auto;
+  margin-bottom: 5rem;
+  width: 85vw;
+  /* width: 75vw; */
+}
 .Btn {
   border-radius: 2rem;
   font-size: 2.2rem;
@@ -42,6 +71,28 @@ function Reroute2() {
   margin-top: 2rem;
   margin-bottom: 1rem;
   text-align: center;
+}
+.btn {
+  border-radius: 2rem;
+  font-size: 1rem;
+  background-color: aliceblue;
+  padding: 3px 10px 3px 10px;
+  margin-top: 0.15rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.text {
+  font-size: 20px;
+}
+.card {
+  font-size: 16px;
+  width: 20rem;
+  background-color: aliceblue;
+  margin-top: 3rem;
+  padding: 1rem;
+  text-align: center;
+  border-radius: 2rem;
 }
 .UpdateEmployee {
   display: none; /* Hidden by default */
