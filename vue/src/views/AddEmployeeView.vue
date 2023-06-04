@@ -9,7 +9,7 @@
         <div class="form-input">
           <label for="ID" class="text">ID</label>
           <input
-            v-model="id"
+            v-model="ids"
             type="number"
             min="0"
             id="id"
@@ -20,17 +20,36 @@
 
         <div class="form-input">
           <label for="name" class="text">Name</label>
-          <input type="text" id="name" class="text-box" placeholder="Enter a Name" />
+          <input
+            v-model="names"
+            type="text"
+            id="name"
+            class="text-box"
+            placeholder="Enter a Name"
+          />
         </div>
 
         <div class="form-input">
           <label for="location" class="text">Location</label>
-          <input type="text" id="location" class="text-box" placeholder="Enter a Place" />
+          <input
+            v-model="locations"
+            type="text"
+            id="location"
+            class="text-box"
+            placeholder="Enter a Place"
+          />
         </div>
 
         <div class="form-input">
           <label for="pay" class="text">Pay</label>
-          <input type="number" min="0" id="pay" class="text-box" placeholder="Enter a Number" />
+          <input
+            v-model="pays"
+            type="number"
+            min="0"
+            id="pay"
+            class="text-box"
+            placeholder="Enter a Number"
+          />
         </div>
       </div>
     </div>
@@ -53,23 +72,29 @@ import { supabase } from '../lib/supabaseClient'
 import { ref, computed } from 'vue'
 
 const router = useRouter()
-const id = ref('')
-console.log(id.value)
+const ids = ref('')
+const names = ref('')
+const locations = ref('')
+const pays = ref('')
+
 function reroute() {
   router.push({ path: '/' })
 }
 
 async function addData(e) {
-  /*   try */
-  e.preventDefault()
-
-  let { data, error } = await supabase
-    .from('alldata')
-    .insert({ id: '14', location: 'Brooklyn', name: 'angelaWang', pay: '25' })
-  console.log('added')
-  /* catch (error) {
+  try {
+    e.preventDefault()
+    let id = ids.value
+    let name = names.value
+    let location = locations.value
+    let pay = pays.value
+    let { data, error } = await supabase
+      .from('alldata')
+      .insert({ id: id, location: location, name: name, pay: pay })
+    console.log('added')
+  } catch (error) {
     console.log(error)
-  } */
+  }
 }
 </script>
 
