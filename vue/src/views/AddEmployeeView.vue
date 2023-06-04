@@ -3,12 +3,19 @@
 
   <h1 class="header">Add an Employee</h1>
 
-  <form id="form">
+  <form id="form" @submit="addData">
     <div class="parent">
       <div class="form inputs">
         <div class="form-input">
           <label for="ID" class="text">ID</label>
-          <input type="number" min="0" id="id" class="text-box" placeholder="Enter a Number" />
+          <input
+            v-model="id"
+            type="number"
+            min="0"
+            id="id"
+            class="text-box"
+            placeholder="Enter a Number"
+          />
         </div>
 
         <div class="form-input">
@@ -29,7 +36,7 @@
     </div>
     <div class="submit">
       <!-- <input type="submit" value="Submit" id="submit" /> -->
-      <input @click="addData" type="submit" value="Submit" id="Button" />
+      <input type="submit" value="Submit" id="Button" />
     </div>
   </form>
 
@@ -43,11 +50,26 @@
 <script setup>
 import { routerKey, useRouter } from 'vue-router'
 import { supabase } from '../lib/supabaseClient'
+import { ref, computed } from 'vue'
 
 const router = useRouter()
-
+const id = ref('')
+console.log(id.value)
 function reroute() {
   router.push({ path: '/' })
+}
+
+async function addData(e) {
+  /*   try */
+  e.preventDefault()
+
+  let { data, error } = await supabase
+    .from('alldata')
+    .insert({ id: '14', location: 'Brooklyn', name: 'angelaWang', pay: '25' })
+  console.log('added')
+  /* catch (error) {
+    console.log(error)
+  } */
 }
 </script>
 
@@ -58,6 +80,9 @@ function reroute() {
   Name: document.getElementById('name'),
   Location: document.getElementById('location'),
   Pay: document.getElementById('pay')
+  let { data, error } = await supabase
+      .from('alldata')
+      .insert({ id: '13', location: 'Brooklyn', name: 'angelaWang', pay: '25' })
 }
 
 function clearfields() {
@@ -77,28 +102,16 @@ DOMSelectors.submitForm.addEventListener('submit', function (event) {
   clearfields()
 }) */
 
-async function addData() {
-  try {
-    /* let { data, error } = await supabase
-      .from('alldata')
-      .insert({ id: '13', location: 'Brooklyn', name: 'angelaWang', pay: '25' }) */
-
-    let { data, error } = await supabase
+/*  let { data, error } = await supabase
       .from('AnnieTeaHouse')
-      .insert([{ id: '13', location: 'Brooklyn' }], { upsert: true })
+      .insert([{ id: '13', location: 'Brooklyn' }], { upsert: true }) */
 
-    /* const { data, error } = await supabase
+/* const { data, error } = await supabase
   .from('alldata')
   .update({ other_column: 'otherValue' })
   .eq('some_column', 'someValue') */
 
-    // getData()
-
-    console.log('added')
-  } catch (error) {
-    console.log(error)
-  }
-}
+// getData()
 
 /* function myFunction() {
   let text
