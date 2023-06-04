@@ -15,6 +15,7 @@
             id="id"
             class="text-box"
             placeholder="Enter a Number"
+            required
           />
         </div>
 
@@ -26,6 +27,7 @@
             id="name"
             class="text-box"
             placeholder="Enter a Name"
+            required
           />
         </div>
 
@@ -37,6 +39,7 @@
             id="location"
             class="text-box"
             placeholder="Enter a Place"
+            required
           />
         </div>
 
@@ -49,6 +52,7 @@
             id="pay"
             class="text-box"
             placeholder="Enter a Number"
+            required
           />
         </div>
       </div>
@@ -84,18 +88,40 @@ function reroute() {
 async function addData(e) {
   try {
     e.preventDefault()
-    let id = ids.value
+    let ID = ids.value
     let name = names.value
     let location = locations.value
     let pay = pays.value
     let { data, error } = await supabase
       .from('alldata')
-      .insert({ id: id, location: location, name: name, pay: pay })
+      .insert({ id: ID, location: location, name: name, pay: pay })
+    await supabase.from('AnnieTeaHouse').insert({ id: ID, location: location })
+    await supabase.from('Pay').insert([{ id: ID, pay: pay }])
+    await supabase.from('employees').insert([{ id: ID, name: name }])
     console.log('added')
   } catch (error) {
-    console.log(error)
+    console.log('error')
   }
 }
+
+/* async function catchError(e) {
+  try {
+    let ID = ids.value
+    let { data: alldata, error } = await supabase.from('alldata').select('id')
+
+    console.log(ids)
+  } catch {
+    console.log(Error2)
+  }
+}
+
+if () {
+      id.value = alldata.id
+      console.log("Duplicate ID")
+    }
+    else {
+      console.log('ERROR')
+    } */
 </script>
 
 <script>
