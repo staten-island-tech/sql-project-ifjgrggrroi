@@ -5,8 +5,9 @@
       <EmployeeCard v-for="dat in Data" :key="dat.id" :Data="dat" />
     </div>
     <button class="Btn">Add Employee</button>
+    <button class="Btn" @click="Reroute2">Update Employee</button>
   </div>
-  <UpdateEmployee></UpdateEmployee>
+  <!-- <UpdateEmployee></UpdateEmployee> -->
   <!-- <div class="parent">
     <div class="card" v-for="alldata in Data" :key="alldata.id" :Data="alldata">
       <h1>Name : {{ alldata.name }}</h1>
@@ -20,10 +21,12 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
+import { routerKey, useRouter } from 'vue-router'
 import { supabase } from '../lib/supabaseClient'
 import EmployeeCard from '../components/EmployeeCard.vue'
-import UpdateEmployee from '../components/UpdateEmployee.vue'
+// import UpdateEmployee from '../components/UpdateEmployee.vue'
 
+const router = useRouter()
 const Data = ref('')
 
 async function getData() {
@@ -41,6 +44,10 @@ async function getData() {
     let target = e.target.parentElement.id
     console.log(target)
   } */
+}
+
+function Reroute2() {
+  router.push({ path: '/UpdateEmployee' })
 }
 
 /* async function fire() {
@@ -65,18 +72,6 @@ onMounted(() => {
 <!-- <EmployeeCard v-for="alldata in Data" :key="alldata.id" :Data="alldata" /> -->
 
 <style>
-.UpdateEmployee {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0, 0, 0); /* Fallback color */
-  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
-}
 
 .app {
   text-align: center;

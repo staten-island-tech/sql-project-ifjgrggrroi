@@ -6,11 +6,11 @@ import HomeView from './views/HomeView.vue'
 
 <template>
   <header>
-    <div class="wrapper">
+    <!-- <div class="wrapper">
       <nav>
         <RouterLink to="/update">Update Employee</RouterLink>
       </nav>
-    </div>
+    </div> -->
   </header>
   <RouterView />
 </template>
