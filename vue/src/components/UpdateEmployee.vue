@@ -20,8 +20,31 @@ import { routerKey, useRouter } from 'vue-router'
 import { supabase } from '../lib/supabaseClient'
 
 const router = useRouter()
-
+const pays = ref('')
 const Data = ref('')
+
+function Reroute2() {
+  router.push({ path: '/' })
+}
+
+async function Update(e) {
+  try {
+    const { data, error } = await supabase.from('alldata').update({ pay: '100' }).eq('id', 1)
+    await supabase.from('pay').update({ pay: '100' }).eq('id', 1)
+
+    /* e.preventDefault()
+    let Pay = pays.value
+    let target = e.target.parentElement.id
+    let pay = 100
+
+    let { data, error } = await supabase.from('Pay').update({ pay: Pay }).eq('id', target)
+    e.target.parentElement.update()
+ */
+    console.log('Updated')
+  } catch (error) {
+    console.log(error)
+  }
+}
 
 async function getData() {
   try {
@@ -35,20 +58,7 @@ async function getData() {
 }
 getData()
 
-async function Update(e) {
-  let target = e.target.parentElement.id
-  // let pay = 100
-
-  const { data, error } = await supabase.from('Pay').update({ pay: '100' }).eq('id', target)
-  // e.target.parentElement.update()
-  console.log('Updated')
-}
-
 /* const { data, error } = await supabase.from('Pay').update({ pay: '100' }).eq('id', '1') */
-
-function Reroute2() {
-  router.push({ path: '/' })
-}
 </script>
 
 <style scoped>
