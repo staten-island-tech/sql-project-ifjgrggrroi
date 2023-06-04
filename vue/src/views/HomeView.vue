@@ -72,7 +72,6 @@ onMounted(() => {
 <!-- <EmployeeCard v-for="alldata in Data" :key="alldata.id" :Data="alldata" /> -->
 
 <style>
-
 .app {
   text-align: center;
 }
@@ -102,6 +101,7 @@ onMounted(() => {
   padding: 5px 15px 5px 15px;
   margin-top: 3rem;
   margin-bottom: 3rem;
+  margin-left: 1rem;
   text-align: center;
 }
 </style>

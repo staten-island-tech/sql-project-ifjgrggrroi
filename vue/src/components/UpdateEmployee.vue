@@ -39,8 +39,8 @@ function Reroute2() {
   font-size: 2.2rem;
   background-color: aliceblue;
   padding: 5px 15px 5px 15px;
-  margin-top: 3rem;
-  margin-bottom: 3rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
   text-align: center;
 }
 .UpdateEmployee {
