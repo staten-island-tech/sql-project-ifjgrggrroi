@@ -4,9 +4,14 @@
   <div class="parent">
     <div v-for="dat in Data" :key="dat.id" :Data="dat" class="card">
       <h1 class="text">Update Employee</h1>
-      <p class="text"><strong>Name: </strong> {{ dat.name }}</p>
-      <p class="text"><strong>ID: </strong> {{ dat.id }}</p>
-      <p class="text"><strong>Salary: </strong> <input /></p>
+      <p class="text"><strong>Name: </strong> <input v-model="names" /></p>
+      <p class="text"><strong>ID: </strong> <input v-model="ids" /></p>
+      <p class="text"><strong>Salary: </strong> <input v-model="pays" /></p>
+
+      <!-- <p class="text"><strong>Name: </strong> {{ dat.name }} <input v-model="names" /></p>
+      <p class="text"><strong>ID: </strong> {{ dat.id }} <input v-model="ids" /></p>
+      <p class="text"><strong>Salary: </strong> ${{ dat.pay }} <input v-model="pays" /></p> -->
+
       <p>
         <strong><button class="btn" @click="Update">Submit</button></strong>
       </p>
@@ -29,8 +34,11 @@ function Reroute2() {
 
 async function Update(e) {
   try {
-    const { data, error } = await supabase.from('alldata').update({ pay: '100' }).eq('id', 1)
-    await supabase.from('pay').update({ pay: '100' }).eq('id', 1)
+    let Pay = pays.value
+
+    e.preventDefault()
+    const { data, error } = await supabase.from('alldata').update({ pay: Pay }).eq('id', 1)
+    await supabase.from('Pay').update({ pay: Pay }).eq('id', 1)
 
     /* e.preventDefault()
     let Pay = pays.value
