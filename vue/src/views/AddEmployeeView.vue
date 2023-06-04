@@ -28,7 +28,8 @@
       </div>
     </div>
     <div class="submit">
-      <input @click="addData" type="submit" value="Submit" class="Button" />
+      <!-- <input type="submit" value="Submit" id="submit" /> -->
+      <input @click="addData" type="submit" value="Submit" id="Button" />
     </div>
   </form>
 
@@ -51,26 +52,53 @@ function reroute() {
 </script>
 
 <script>
-function newEmployee() {
-  let ID
-  let Name
-  let Location
-  let Pay
+/* const DOMSelectors = {
+  submitForm: document.querySelector('form'),
+  ID: document.getElementById('id'),
+  Name: document.getElementById('name'),
+  Location: document.getElementById('location'),
+  Pay: document.getElementById('pay')
 }
+
+function clearfields() {
+  DOMSelectors.ID.value = ''
+  DOMSelectors.Name.value = ''
+  DOMSelectors.Location.value = ''
+  DOMSelectors.Pay.value = ''
+}
+
+DOMSelectors.submitForm.addEventListener('submit', function (event) {
+  let ID = DOMSelectors.ID.value
+  let Name = DOMSelectors.Name.value
+  let Location = DOMSelectors.Location.value
+  let Pay = DOMSelectors.Pay.value
+
+  event.preventDefault()
+  clearfields()
+}) */
 
 async function addData() {
   try {
-    let { data, error } = await supabase
+    /* let { data, error } = await supabase
       .from('alldata')
-      .insert({ id: '12', location: 'Brooklyn', name: 'angelaWang', pay: '25' })
-    getData()
+      .insert({ id: '13', location: 'Brooklyn', name: 'angelaWang', pay: '25' }) */
+
+    let { data, error } = await supabase
+      .from('AnnieTeaHouse')
+      .insert([{ id: '13', location: 'Brooklyn' }], { upsert: true })
+
+    /* const { data, error } = await supabase
+  .from('alldata')
+  .update({ other_column: 'otherValue' })
+  .eq('some_column', 'someValue') */
+
+    // getData()
+
     console.log('added')
   } catch (error) {
     console.log(error)
   }
 }
-
-// }
 
 /* function myFunction() {
   let text
@@ -94,7 +122,7 @@ async function addData() {
   text-align: center;
 }
 
-.Button {
+#Button {
   border-radius: 2rem;
   font-size: 1.5rem;
   background-color: aliceblue;

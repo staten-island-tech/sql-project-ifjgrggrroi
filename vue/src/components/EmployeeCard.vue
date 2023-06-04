@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <h1>Name : {{ Data.name }}</h1>
+    <h1>Name : {{ Data.name }} </h1>
     <h2>Location : {{ Data.location }}</h2>
     <h2>ID : {{ Data.id }}</h2>
     <h2>Pay : ${{ Data.pay }}</h2>
