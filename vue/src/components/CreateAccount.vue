@@ -14,12 +14,13 @@
 import { storeToRefs } from 'pinia'
 import { useAuthStore } from '../stores/auth-store'
 import { useUserStore } from '../stores/user-store'
+import { supabase } from '../lib/supabaseClient'
 export default {
   data() {
     return {
       email: '',
       password: '',
-      id: 0
+  
     }
   },
 
@@ -28,13 +29,11 @@ export default {
       e.preventDefault()
       const auth = useAuthStore()
       const userStore = useUserStore()
-      const user = {
+      const {user, error} = await supabase.auth.signUp({
         email: this.email,
-        password: this.password,
-        id: this.id++
-      }
-
-      await auth.createAccount(this.email, this.password, this.id)
+        password: this.password
+      })
+     
       await userStore.createUser(user)
       this.$router.push('/login')
     }
