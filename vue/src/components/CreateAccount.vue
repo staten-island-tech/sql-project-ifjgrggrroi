@@ -6,6 +6,10 @@
 
       <input type="password" v-model="password" placeholder="Password" required />
       <div><button type="submit">Sign Up</button></div>
+      <p v-if="auth.currentUser !== null">
+        Account created. <router-link to="/login">Login Here</router-link>
+      </p>
+      <p>{{ redirect }}</p>
     </form>
   </div>
 </template>
@@ -20,7 +24,8 @@ export default {
     return {
       email: '',
       password: '',
-  
+      redirect: '',
+      auth: useAuthStore()
     }
   },
 
@@ -29,13 +34,7 @@ export default {
       e.preventDefault()
       const auth = useAuthStore()
       const userStore = useUserStore()
-      const {user, error} = await supabase.auth.signUp({
-        email: this.email,
-        password: this.password
-      })
-     
-      await userStore.createUser(user)
-      this.$router.push('/login')
+      auth.createAccount(this.email, this.password)
     }
   }
 }

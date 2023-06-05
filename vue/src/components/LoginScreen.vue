@@ -30,14 +30,18 @@ export default {
       const auth = useAuthStore()
       e.preventDefault()
 
-      let { data: users, error } = await supabase.from('users').select('*')
-
-      if (this.email === users.email && this.password === users.password) {
-        await auth.login(this.email, this.password)
-
+      try {
+        const { user, error } = await supabase.auth.signIn({
+          email: this.email,
+          password: this.password
+        })
+        this.loggedIn = true
+        console.log('correct')
         this.$router.push('/dashboard')
-      } else {
+        auth.login()
+      } catch (error) {
         console.log('incorrect')
+        this.incorrect = 'incorrect password'
       }
     }
   }
