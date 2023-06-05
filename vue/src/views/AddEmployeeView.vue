@@ -6,18 +6,7 @@
   <form id="form" @submit="addData">
     <div class="parent">
       <div class="form inputs">
-        <div class="form-input">
-          <label for="ID" class="text">ID</label>
-          <input
-            v-model="ids"
-            type="number"
-            min="0"
-            id="id"
-            class="text-box"
-            placeholder="Enter a Number"
-            required
-          />
-        </div>
+        <div class="form-input"></div>
 
         <div class="form-input">
           <label for="name" class="text">Name</label>
@@ -94,8 +83,8 @@ async function addData(e) {
     let pay = pays.value
     let { data, error } = await supabase
       .from('alldata')
-      .insert({ id: ID, location: location, name: name, pay: pay })
-    await supabase.from('AnnieTeaHouse').insert({ id: ID, location: location })
+      .insert({ location: location, name: name, pay: pay })
+    await supabase.from('AnnieTeaHouse').insert({ location: location })
     await supabase.from('Pay').insert([{ id: ID, pay: pay }])
     await supabase.from('employees').insert([{ id: ID, name: name }])
     console.log('added')
