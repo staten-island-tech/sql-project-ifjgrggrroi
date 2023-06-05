@@ -5,12 +5,17 @@
     <h2>ID: {{ Data.id }}</h2>
     <h2>Pay: ${{ Data.pay }}</h2>
     <button @click="fire" class="btn">FIRE</button>
+    <button @click="Reroute2" class="btn">EDIT</button>
+    <p id="demo"></p>
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue'
 import { supabase } from '../lib/supabaseClient'
+import { routerKey, useRouter } from 'vue-router'
+
+const router = useRouter()
 
 const props = defineProps({
   Data: Object,
@@ -41,6 +46,10 @@ async function fire(e) {
     }
   }
   getData()
+}
+
+function Reroute2() {
+  router.push({ path: '/UpdateEmployee' })
 }
 
 /*   Data: ref(''),
@@ -75,6 +84,7 @@ event.target.parentElement.remove()) -->
   background-color: rgb(255, 255, 255);
   width: 5.5rem;
   height: 2.5rem;
+  margin-left: 1rem;
 }
 .btn:hover {
   color: rgb(255, 255, 255);

@@ -2,21 +2,22 @@
   <button class="Btn" @click="Reroute2">Back To Home Page</button>
 
   <div class="parent">
-    <div v-for="dat in Data" :key="dat.id" :Data="dat" class="card">
+    <!-- <div v-for="dat in Data" :key="dat.id" :Data="dat" class="card"> -->
+    <div class="card">
       <h1 class="text">Update Employee</h1>
       <p class="text"><strong>Name: </strong> <input v-model="names" /></p>
-      <p class="text"><strong>ID: </strong> <input v-model="ids" /></p>
+      <p class="text"><strong>Location: </strong> <input v-model="locations" /></p>
       <p class="text"><strong>Salary: </strong> <input v-model="pays" /></p>
-
-      <!-- <p class="text"><strong>Name: </strong> {{ dat.name }} <input v-model="names" /></p>
-      <p class="text"><strong>ID: </strong> {{ dat.id }} <input v-model="ids" /></p>
-      <p class="text"><strong>Salary: </strong> ${{ dat.pay }} <input v-model="pays" /></p> -->
-
       <p>
         <strong><button class="btn" @click="Update">Submit</button></strong>
       </p>
     </div>
+
+    <!-- <p class="text"><strong>Name: </strong> {{ dat.name }} <input v-model="names" /></p>
+      <p class="text"><strong>ID: </strong> {{ dat.id }} <input v-model="ids" /></p>
+      <p class="text"><strong>Salary: </strong> ${{ dat.pay }} <input v-model="pays" /></p> -->
   </div>
+  <!-- </div> -->
 </template>
 
 <script setup>
@@ -25,8 +26,11 @@ import { routerKey, useRouter } from 'vue-router'
 import { supabase } from '../lib/supabaseClient'
 
 const router = useRouter()
-const pays = ref('')
 const Data = ref('')
+
+const names = ref('')
+const pays = ref('')
+const locations = ref('')
 
 function Reroute2() {
   router.push({ path: '/' })
@@ -34,10 +38,15 @@ function Reroute2() {
 
 async function Update(e) {
   try {
+    let Name = names.value
     let Pay = pays.value
+    let Location = locations.value
 
     e.preventDefault()
-    const { data, error } = await supabase.from('alldata').update({ pay: Pay }).eq('id', 1)
+    const { data, error } = await supabase
+      .from('alldata')
+      .update({ pay: Pay, name: Name, location: Location })
+      .eq('id', 1)
     await supabase.from('Pay').update({ pay: Pay }).eq('id', 1)
 
     /* e.preventDefault()
@@ -66,6 +75,19 @@ async function getData() {
 }
 getData()
 
+/* async function edit(e) {
+  // let target = e.target.parentElement.id
+  // alert('This is a numer: ' + 100)
+  let text
+  let person = prompt('Enter a name:', '')
+  if (person == null || person == '') {
+    text = 'User cancelled the prompt.'
+  } else {
+    text = 'Hello ' + person + '! How are you today?'
+  }
+  document.getElementById('demo').innerHTML = text
+}
+ */
 /* const { data, error } = await supabase.from('Pay').update({ pay: '100' }).eq('id', '1') */
 </script>
 
@@ -101,11 +123,11 @@ getData()
 }
 
 .text {
-  font-size: 20px;
+  font-size: 25px;
 }
 .card {
-  font-size: 16px;
-  width: 20rem;
+  /* font-size: 20px; */
+  width: 25rem;
   background-color: aliceblue;
   margin-top: 3rem;
   padding: 1rem;
