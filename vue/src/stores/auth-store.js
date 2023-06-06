@@ -29,12 +29,10 @@ export const useAuthStore = defineStore('authStore', {
     async logout() {
       const { error } = await supabase.auth.signOut()
       this.loggedIn = false
+      this.currentUser = null
     },
     loadUser() {
       this.currentUser = supabase.auth.user()
-    },
-    clearUser() {
-      this.currentUser = null
     }
   },
 

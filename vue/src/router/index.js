@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import { useAuthStore } from '../stores/auth-store'
+import { mapActions } from 'pinia'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -21,7 +23,10 @@ const router = createRouter({
     {
       path: '/dashboard',
       name: 'dashboard',
-      component: () => import('../views/LandingPage.vue')
+      component: () => import('../views/LandingPage.vue'),
+      meta: {
+        needsAuth: true
+      }
     },
     {
       path: '/signup',
@@ -30,5 +35,12 @@ const router = createRouter({
     }
   ]
 })
-
+router.beforeEach((to, from, next) => {
+  const auth = authStore()
+  if (to.meta.needsAuth && !authStore.loggedIn) {
+    next('/login')
+  } else {
+    next()
+  }
+})
 export default router
