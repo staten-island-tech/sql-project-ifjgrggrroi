@@ -1,6 +1,7 @@
 <template>
   <button class="Btn" @click="Reroute2">Back To Home Page</button>
 
+  <h1></h1>
   <div class="parent">
     <!-- <div v-for="dat in Data" :key="dat.id" :Data="dat" class="card"> -->
     <div class="card">
@@ -24,9 +25,15 @@
 import { ref, onMounted } from 'vue'
 import { routerKey, useRouter } from 'vue-router'
 import { supabase } from '../lib/supabaseClient'
+import { useUserStore } from '../Pinia.js'
 
 const router = useRouter()
 const Data = ref('')
+
+const props = defineProps({
+  Data: Object,
+  id: Number
+})
 
 const names = ref('')
 const pays = ref('')
@@ -41,13 +48,12 @@ async function Update(e) {
     let Name = names.value
     let Pay = pays.value
     let Location = locations.value
-
-    e.preventDefault()
+    this.Target = e.preventDefault()
     const { data, error } = await supabase
       .from('alldata')
       .update({ pay: Pay, name: Name, location: Location })
-      .eq('id', 1)
-    await supabase.from('Pay').update({ pay: Pay }).eq('id', 1)
+      .eq('id', Target)
+    await supabase.from('Pay').update({ pay: Pay }).eq('id', Target)
 
     /* e.preventDefault()
     let Pay = pays.value

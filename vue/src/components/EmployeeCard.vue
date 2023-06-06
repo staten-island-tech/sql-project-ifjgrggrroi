@@ -6,6 +6,7 @@
     <h2>Pay: ${{ Data.pay }}</h2>
     <button @click="fire" class="btn">FIRE</button>
     <button @click="Reroute2" class="btn">EDIT</button>
+    <!-- <button @click="Reroute2" class="btn">EDIT</button> -->
     <p id="demo"></p>
   </div>
 </template>
@@ -19,7 +20,7 @@ const router = useRouter()
 
 const props = defineProps({
   Data: Object,
-  id: Number
+  id: Number,
 })
 
 async function fire(e) {
@@ -48,7 +49,16 @@ async function fire(e) {
   getData()
 }
 
-function Reroute2() {
+// async function update(e) {
+//   let Target = e.target.parentElement.id
+
+//   console.log(Target)
+// }
+
+function Reroute2(e) {
+  let Target = e.target.parentElement.id
+  console.log(Target)
+
   router.push({ path: '/UpdateEmployee' })
 }
 
