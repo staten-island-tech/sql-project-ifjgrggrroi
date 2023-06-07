@@ -29,6 +29,7 @@ import { useUserStore } from '../Pinia.js'
 
 const router = useRouter()
 const Data = ref('')
+const user = useUserStore()
 
 const props = defineProps({
   Data: Object,
@@ -38,7 +39,6 @@ const props = defineProps({
 const names = ref('')
 const pays = ref('')
 const locations = ref('')
-
 function Reroute2() {
   router.push({ path: '/' })
 }
@@ -48,12 +48,16 @@ async function Update(e) {
     let Name = names.value
     let Pay = pays.value
     let Location = locations.value
-    this.Target = e.preventDefault()
+
+    this.user = e.target.parentElement
+
+    e.preventDefault()
+
     const { data, error } = await supabase
       .from('alldata')
       .update({ pay: Pay, name: Name, location: Location })
-      .eq('id', Target)
-    await supabase.from('Pay').update({ pay: Pay }).eq('id', Target)
+      .eq('id', user)
+    await supabase.from('Pay').update({ pay: Pay }).eq('id', user)
 
     /* e.preventDefault()
     let Pay = pays.value

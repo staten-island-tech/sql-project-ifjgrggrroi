@@ -15,12 +15,14 @@
 import { ref, onMounted } from 'vue'
 import { supabase } from '../lib/supabaseClient'
 import { routerKey, useRouter } from 'vue-router'
+import { useUserStore } from '../Pinia.js'
 
 const router = useRouter()
+const user = useUserStore()
 
 const props = defineProps({
   Data: Object,
-  id: Number,
+  id: Number
 })
 
 async function fire(e) {
@@ -56,8 +58,8 @@ async function fire(e) {
 // }
 
 function Reroute2(e) {
-  let Target = e.target.parentElement.id
-  console.log(Target)
+  let user = e.target.parentElement.id
+  console.log(user)
 
   router.push({ path: '/UpdateEmployee' })
 }
