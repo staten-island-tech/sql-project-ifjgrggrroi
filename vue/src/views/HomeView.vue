@@ -4,7 +4,8 @@
     <div class="parent">
       <EmployeeCard v-for="dat in Data" :key="dat.id" :Data="dat" />
     </div>
-    <button class="Btn">Add Employee</button>
+    <button class="Btn" @click="reroute">Add An Employee</button>
+    <!-- <button @click="addData" class="Btn">Add Employee</button> -->
   </div>
   <!-- <UpdateEmployee></UpdateEmployee> -->
   <!-- <div class="parent">
@@ -22,8 +23,9 @@
 import { ref, onMounted } from 'vue'
 import { supabase } from '../lib/supabaseClient'
 import EmployeeCard from '../components/EmployeeCard.vue'
-// import UpdateEmployee from '../components/UpdateEmployee.vue'
+import { routerKey, useRouter } from 'vue-router'
 
+const router = useRouter()
 const Data = ref('')
 
 async function getData() {
@@ -41,6 +43,10 @@ async function getData() {
     let target = e.target.parentElement.id
     console.log(target)
   } */
+}
+
+function reroute() {
+  router.push({ path: '/AddEmployee' })
 }
 
 /* async function fire() {
