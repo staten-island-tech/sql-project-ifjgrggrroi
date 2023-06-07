@@ -58,6 +58,8 @@ async function Update(e) {
       .update({ pay: Pay, name: Name, location: Location })
       .eq('id', user.target)
     await supabase.from('Pay').update({ pay: Pay }).eq('id', user.target)
+    await supabase.from('AnnieTeaHouse').update({ location: Location }).eq('id', user.target)
+    await supabase.from('employees').update({ name: Name }).eq('id', user.target)
 
     /* e.preventDefault()
     let Pay = pays.value
