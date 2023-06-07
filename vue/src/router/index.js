@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import { useAuthStore } from '../stores/auth-store'
-import { mapActions } from 'pinia'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -25,7 +24,7 @@ const router = createRouter({
       name: 'dashboard',
       component: () => import('../views/LandingPage.vue'),
       meta: {
-        needsAuth: true
+        requiresAuth: true
       }
     },
     {
@@ -35,9 +34,10 @@ const router = createRouter({
     }
   ]
 })
+
 router.beforeEach((to, from, next) => {
-  const auth = authStore()
-  if (to.meta.needsAuth && !authStore.loggedIn) {
+  const auth = useAuthStore()
+  if (to.meta.requiresAuth && auth.loggedIn === false) {
     next('/login')
   } else {
     next()

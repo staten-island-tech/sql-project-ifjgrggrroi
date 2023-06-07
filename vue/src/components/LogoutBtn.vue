@@ -9,7 +9,7 @@ export default {
     logout(e) {
       const auth = useAuthStore()
       e.preventDefault()
-      auth.logout
+      auth.logout()
       this.$router.push('/')
     }
   }
