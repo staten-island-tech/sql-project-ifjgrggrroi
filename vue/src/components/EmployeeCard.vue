@@ -58,8 +58,8 @@ async function fire(e) {
 // }
 
 function Reroute2(e) {
-  let user = e.target.parentElement.id
-  console.log(user)
+  user.target = e.target.parentElement.id
+  console.log(user.target)
 
   router.push({ path: '/UpdateEmployee' })
 }

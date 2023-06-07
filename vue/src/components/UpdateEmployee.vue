@@ -49,15 +49,15 @@ async function Update(e) {
     let Pay = pays.value
     let Location = locations.value
 
-    this.user = e.target.parentElement
+    //this.user = e.target.parentElement
 
     e.preventDefault()
 
     const { data, error } = await supabase
       .from('alldata')
       .update({ pay: Pay, name: Name, location: Location })
-      .eq('id', user)
-    await supabase.from('Pay').update({ pay: Pay }).eq('id', user)
+      .eq('id', user.target)
+    await supabase.from('Pay').update({ pay: Pay }).eq('id', user.target)
 
     /* e.preventDefault()
     let Pay = pays.value
