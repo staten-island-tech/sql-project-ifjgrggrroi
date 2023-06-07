@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import { useAuthStore } from '../stores/auth-store'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -8,24 +7,7 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      redirect: { path: '/login' },
-      component: () => import('../components/LoginScreen.vue'),
-      children: [
-        {
-          path: '/login',
-          name: 'Login',
-          component: () => import('../components/LoginScreen.vue')
-        }
-      ]
-    },
-
-    {
-      path: '/dashboard',
-      name: 'dashboard',
-      component: () => import('../views/LandingPage.vue'),
-      meta: {
-        requiresAuth: true
-      }
+      component: HomeView
     },
     {
       path: '/about',
@@ -48,11 +30,6 @@ const router = createRouter({
       path: '/AddEmployee',
       name: 'AddEmployee',
       component: () => import('../views/AddEmployeeView.vue')
-    },
-    {
-      path: '/signup',
-      name: 'signup',
-      component: () => import('../components/CreateAccount.vue')
     }
     /*     {
       path: '/update',
@@ -62,12 +39,4 @@ const router = createRouter({
   ]
 })
 
-router.beforeEach((to, from, next) => {
-  const auth = useAuthStore()
-  if (to.meta.requiresAuth && auth.loggedIn === false) {
-    next('/login')
-  } else {
-    next()
-  }
-})
 export default router
