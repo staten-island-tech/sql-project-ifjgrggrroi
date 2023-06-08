@@ -6,9 +6,9 @@
     <!-- <div v-for="dat in Data" :key="dat.id" :Data="dat" class="card"> -->
     <div class="card">
       <h1 class="text">Update Employee</h1>
-      <p class="text"><strong>Name: </strong> <input v-model="names" /></p>
-      <p class="text"><strong>Location: </strong> <input v-model="locations" /></p>
-      <p class="text"><strong>Salary: </strong> <input v-model="pays" /></p>
+      <p class="text"><strong>Name: </strong> <input v-model="names" required /></p>
+      <p class="text"><strong>Location: </strong> <input v-model="locations" required /></p>
+      <p class="text"><strong>Salary: </strong> <input v-model="pays" required /></p>
       <p>
         <strong><button class="btn" @click="Update">Submit</button></strong>
       </p>
