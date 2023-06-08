@@ -38,7 +38,10 @@ function youSure(e) {
 async function fire(e) {
   let target = e.target.parentElement.id
 
-  const { data, error } = await supabase.from('Pay').delete().eq('id', target)
+  const { data, error } = await supabase.from('employees').delete().eq('id', target)
+  e.target.parentElement.remove()
+
+  /* const { data, error } = await supabase.from('Pay').delete().eq('id', target)
   e.target.parentElement.remove()
   await supabase.from('employees').delete().eq('id', target)
   e.target.parentElement.remove()
@@ -46,7 +49,7 @@ async function fire(e) {
   e.target.parentElement.remove()
   await supabase.from('alldata').delete().eq('id', target)
   e.target.parentElement.remove()
-
+ */
   const Data = ref('')
 
   async function getData() {

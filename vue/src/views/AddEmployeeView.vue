@@ -51,7 +51,7 @@ function routeToHome() {
 async function addData(e) {
   try {
     e.preventDefault()
-    let ID = ids.value
+    // let ID = ids.value
     let name = names.value
     let location = locations.value
     let pay = pays.value
@@ -59,8 +59,8 @@ async function addData(e) {
       .from('alldata')
       .insert({ location: location, name: name, pay: pay })
     await supabase.from('AnnieTeaHouse').insert({ location: location })
-    await supabase.from('Pay').insert([{ id: ID, pay: pay }])
-    await supabase.from('employees').insert([{ id: ID, name: name }])
+    await supabase.from('Pay').insert([{ pay: pay }])
+    await supabase.from('employees').insert([{ name: name }])
     console.log('added')
   } catch (error) {
     console.log('error')
