@@ -5,18 +5,7 @@
       <EmployeeCard v-for="dat in Data" :key="dat.id" :Data="dat" />
     </div>
     <button class="Btn" @click="reroute">Add An Employee</button>
-    <!-- <button @click="addData" class="Btn">Add Employee</button> -->
   </div>
-  <!-- <UpdateEmployee></UpdateEmployee> -->
-  <!-- <div class="parent">
-    <div class="card" v-for="alldata in Data" :key="alldata.id" :Data="alldata">
-      <h1>Name : {{ alldata.name }}</h1>
-      <h2>Location : {{ alldata.location }}</h2>
-      <h2>ID : {{ alldata.id }}</h2>
-      <h2>Pay : ${{ alldata.pay }}</h2>
-      <button class="btn">FIRE</button>
-    </div>
-  </div> -->
 </template>
 
 <script setup>
@@ -37,38 +26,16 @@ async function getData() {
   } catch (error) {
     console.log(error)
   }
-
-  /*   function fire(e) {
-    e.target.parentElement.remove()
-    let target = e.target.parentElement.id
-    console.log(target)
-  } */
 }
 
 function reroute() {
   router.push({ path: '/AddEmployee' })
 }
 
-/* async function fire() {
-  try {
-    const { data: alldata, error } = await supabase.from('alldata').delete().eq('id', '3')
-
-    getData()
-    Data.value = alldata
-    console.log(alldata)
-  } catch (error) {
-    console.log(error)
-  }
-} */
-
 onMounted(() => {
   getData()
 })
 </script>
-
-<!-- this.alldata = this.alldata.filter((t) => t !== name) -->
-
-<!-- <EmployeeCard v-for="alldata in Data" :key="alldata.id" :Data="alldata" /> -->
 
 <style>
 .app {

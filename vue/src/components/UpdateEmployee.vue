@@ -3,7 +3,6 @@
 
   <h1></h1>
   <div class="parent">
-    <!-- <div v-for="dat in Data" :key="dat.id" :Data="dat" class="card"> -->
     <div class="card">
       <h1 class="text">Update Employee</h1>
       <p class="text"><strong>Name: </strong> <input v-model="names" required /></p>
@@ -13,12 +12,7 @@
         <strong><button class="btn" @click="Update">Submit</button></strong>
       </p>
     </div>
-
-    <!-- <p class="text"><strong>Name: </strong> {{ dat.name }} <input v-model="names" /></p>
-      <p class="text"><strong>ID: </strong> {{ dat.id }} <input v-model="ids" /></p>
-      <p class="text"><strong>Salary: </strong> ${{ dat.pay }} <input v-model="pays" /></p> -->
   </div>
-  <!-- </div> -->
 </template>
 
 <script setup>
@@ -49,8 +43,6 @@ async function Update(e) {
     let Pay = pays.value
     let Location = locations.value
 
-    //this.user = e.target.parentElement
-
     e.preventDefault()
 
     const { data, error } = await supabase
@@ -61,14 +53,6 @@ async function Update(e) {
     await supabase.from('AnnieTeaHouse').update({ location: Location }).eq('id', user.target)
     await supabase.from('employees').update({ name: Name }).eq('id', user.target)
 
-    /* e.preventDefault()
-    let Pay = pays.value
-    let target = e.target.parentElement.id
-    let pay = 100
-
-    let { data, error } = await supabase.from('Pay').update({ pay: Pay }).eq('id', target)
-    e.target.parentElement.update()
- */
     console.log('Updated')
   } catch (error) {
     console.log(error)
@@ -86,21 +70,6 @@ async function getData() {
   }
 }
 getData()
-
-/* async function edit(e) {
-  // let target = e.target.parentElement.id
-  // alert('This is a numer: ' + 100)
-  let text
-  let person = prompt('Enter a name:', '')
-  if (person == null || person == '') {
-    text = 'User cancelled the prompt.'
-  } else {
-    text = 'Hello ' + person + '! How are you today?'
-  }
-  document.getElementById('demo').innerHTML = text
-}
- */
-/* const { data, error } = await supabase.from('Pay').update({ pay: '100' }).eq('id', '1') */
 </script>
 
 <style scoped>
@@ -138,7 +107,6 @@ getData()
   font-size: 25px;
 }
 .card {
-  /* font-size: 20px; */
   width: 25rem;
   background-color: aliceblue;
   margin-top: 3rem;
@@ -147,15 +115,15 @@ getData()
   border-radius: 2rem;
 }
 .UpdateEmployee {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  display: none;
+  position: fixed;
+  z-index: 1;
   left: 0;
   top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0, 0, 0); /* Fallback color */
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
   background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
 }
 </style>

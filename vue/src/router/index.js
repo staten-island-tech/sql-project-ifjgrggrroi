@@ -7,7 +7,7 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'home',
+      name: '/',
       // component: HomeView,
       redirect: { path: '/login' },
       component: () => import('../components/LoginScreen.vue'),
@@ -19,7 +19,6 @@ const router = createRouter({
         }
       ]
     },
-
     {
       path: '/dashboard',
       name: 'dashboard',
@@ -29,13 +28,14 @@ const router = createRouter({
       }
     },
     {
-      path: '/employees',
-      name: 'employees'
-    },
-    {
       path: '/signup',
       name: 'signup',
       component: () => import('../components/CreateAccount.vue')
+    },
+    {
+      path: '/home',
+      name: 'home',
+      component: () => import('../views/HomeView.vue')
     },
     {
       path: '/UpdateEmployee',

@@ -1,4 +1,3 @@
-+
 <template>
   <h1 class="heading">Create Account</h1>
   <div class="form-wrapper">

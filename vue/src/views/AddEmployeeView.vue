@@ -51,12 +51,6 @@
       <input type="submit" value="Submit" id="Button" />
     </div>
   </form>
-
-  <!-- <div>
-    <button class="Btn" @click="myFunction">Try it</button>
-
-    <p id="Card"></p>
-  </div> -->
 </template>
 
 <script setup>
@@ -92,77 +86,6 @@ async function addData(e) {
     console.log('error')
   }
 }
-
-/* async function catchError(e) {
-  try {
-    let ID = ids.value
-    let { data: alldata, error } = await supabase.from('alldata').select('id')
-
-    console.log(ids)
-  } catch {
-    console.log(Error2)
-  }
-}
-
-if () {
-      id.value = alldata.id
-      console.log("Duplicate ID")
-    }
-    else {
-      console.log('ERROR')
-    } */
-</script>
-
-<script>
-/* const DOMSelectors = {
-  submitForm: document.querySelector('form'),
-  ID: document.getElementById('id'),
-  Name: document.getElementById('name'),
-  Location: document.getElementById('location'),
-  Pay: document.getElementById('pay')
-  let { data, error } = await supabase
-      .from('alldata')
-      .insert({ id: '13', location: 'Brooklyn', name: 'angelaWang', pay: '25' })
-}
-
-function clearfields() {
-  DOMSelectors.ID.value = ''
-  DOMSelectors.Name.value = ''
-  DOMSelectors.Location.value = ''
-  DOMSelectors.Pay.value = ''
-}
-
-DOMSelectors.submitForm.addEventListener('submit', function (event) {
-  let ID = DOMSelectors.ID.value
-  let Name = DOMSelectors.Name.value
-  let Location = DOMSelectors.Location.value
-  let Pay = DOMSelectors.Pay.value
-
-  event.preventDefault()
-  clearfields()
-}) */
-
-/*  let { data, error } = await supabase
-      .from('AnnieTeaHouse')
-      .insert([{ id: '13', location: 'Brooklyn' }], { upsert: true }) */
-
-/* const { data, error } = await supabase
-  .from('alldata')
-  .update({ other_column: 'otherValue' })
-  .eq('some_column', 'someValue') */
-
-// getData()
-
-/* function myFunction() {
-  let text
-  let User = prompt('Please enter employee name:', 'Harry Potter')
-  if (User == null || User == '') {
-    text = 'User cancelled the prompt.'
-  } else {
-    text = 'Hello ' + User + '! How are you today?'
-  }
-  document.getElementById('Card').innerHTML = text
-} */
 </script>
 
 <style>

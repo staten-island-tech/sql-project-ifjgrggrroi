@@ -6,7 +6,6 @@
     <h2>Pay: ${{ Data.pay }}</h2>
     <button @click="fire" class="btn">FIRE</button>
     <button @click="Reroute2" class="btn">EDIT</button>
-    <!-- <button @click="Reroute2" class="btn">EDIT</button> -->
     <p id="demo"></p>
   </div>
 </template>
@@ -51,30 +50,13 @@ async function fire(e) {
   getData()
 }
 
-// async function update(e) {
-//   let Target = e.target.parentElement.id
-
-//   console.log(Target)
-// }
-
 function Reroute2(e) {
   user.target = e.target.parentElement.id
   console.log(user.target)
 
   router.push({ path: '/UpdateEmployee' })
 }
-
-/*   Data: ref(''),
-  async getdata() {
-    let { data: alldata, error } = await supabase.from('alldata').select('*')
-
-    Data.value = await alldata
-    console.log(alldata)
-  }, */
 </script>
-
-<!-- let { data: alldata, error } = await supabase .from('alldata') .delete() .eq('id',
-event.target.parentElement.remove()) -->
 
 <style scoped>
 .card {
