@@ -1,16 +1,12 @@
 <template>
-  <button class="Btn" @click="Reroute2">Back To Home Page</button>
-
-  <h1></h1>
   <div class="parent">
     <div class="card">
       <h1 class="text">Update Employee</h1>
+      <p>ID: {{ user.target }}</p>
       <p class="text"><strong>Name: </strong> <input v-model="names" required /></p>
       <p class="text"><strong>Location: </strong> <input v-model="locations" required /></p>
       <p class="text"><strong>Salary: </strong> <input v-model="pays" required /></p>
-      <p>
-        <strong><button class="btn" @click="Update">Submit</button></strong>
-      </p>
+      <button class="btn" @click="Update">Submit</button>
     </div>
   </div>
 </template>
@@ -19,11 +15,11 @@
 import { ref, onMounted } from 'vue'
 import { routerKey, useRouter } from 'vue-router'
 import { supabase } from '../lib/supabaseClient'
-import { useUserStore } from '../Pinia.js'
+import { useTargetStore } from '../stores/target.js'
 
 const router = useRouter()
 const Data = ref('')
-const user = useUserStore()
+const user = useTargetStore()
 
 const props = defineProps({
   Data: Object,
@@ -33,9 +29,6 @@ const props = defineProps({
 const names = ref('')
 const pays = ref('')
 const locations = ref('')
-function Reroute2() {
-  router.push({ path: '/' })
-}
 
 async function Update(e) {
   try {
@@ -57,6 +50,7 @@ async function Update(e) {
   } catch (error) {
     console.log(error)
   }
+  router.push({ path: '/home' })
 }
 
 async function getData() {
@@ -81,6 +75,7 @@ getData()
   align-items: flex-start;
   margin: auto;
   margin-bottom: 5rem;
+  margin-top: 5rem;
   width: 85vw;
   /* width: 75vw; */
 }

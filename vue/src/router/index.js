@@ -35,17 +35,26 @@ const router = createRouter({
     {
       path: '/home',
       name: 'home',
-      component: () => import('../views/HomeView.vue')
+      component: () => import('../views/HomeView.vue'),
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '/UpdateEmployee',
       name: 'UpdateEmployee',
-      component: () => import('../components/UpdateEmployee.vue')
+      component: () => import('../components/UpdateEmployee.vue'),
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '/AddEmployee',
       name: 'AddEmployee',
-      component: () => import('../views/AddEmployeeView.vue')
+      component: () => import('../views/AddEmployeeView.vue'),
+      meta: {
+        requiresAuth: true
+      }
     }
   ]
 })

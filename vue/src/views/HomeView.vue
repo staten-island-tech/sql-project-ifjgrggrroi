@@ -1,10 +1,11 @@
 <template>
   <div class="app">
     <h1 class="header">Employees</h1>
+    <button @click="toAddEmployee">Add New Employee</button>
+    <LogoutBtn></LogoutBtn>
     <div class="parent">
       <EmployeeCard v-for="dat in Data" :key="dat.id" :Data="dat" />
     </div>
-    <button class="Btn" @click="reroute">Add An Employee</button>
   </div>
 </template>
 
@@ -13,6 +14,7 @@ import { ref, onMounted } from 'vue'
 import { supabase } from '../lib/supabaseClient'
 import EmployeeCard from '../components/EmployeeCard.vue'
 import { routerKey, useRouter } from 'vue-router'
+import LogoutBtn from '../components/LogoutBtn.vue'
 
 const router = useRouter()
 const Data = ref('')
@@ -22,13 +24,12 @@ async function getData() {
     let { data: alldata, error } = await supabase.from('alldata').select('*')
 
     Data.value = await alldata
-    console.log(alldata)
   } catch (error) {
     console.log(error)
   }
 }
 
-function reroute() {
+function toAddEmployee() {
   router.push({ path: '/AddEmployee' })
 }
 
@@ -37,7 +38,7 @@ onMounted(() => {
 })
 </script>
 
-<style>
+<style scoped>
 .app {
   text-align: center;
 }
@@ -60,14 +61,24 @@ onMounted(() => {
   /* width: 75vw; */
 }
 
-.Btn {
-  border-radius: 2rem;
-  font-size: 2.2rem;
-  background-color: aliceblue;
-  padding: 5px 15px 5px 15px;
-  margin-top: 3rem;
-  margin-bottom: 3rem;
-  margin-left: 1rem;
+button {
+  font-size: 1rem;
+  padding: 0.3em 1.2em;
+  margin-top: 2rem;
+  border: 1px solid;
+  border-radius: 2em;
+  text-decoration: none;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  color: #ffffff;
   text-align: center;
+  background-color: rgb(37, 131, 214);
+  transition: all 0.2s;
+}
+
+button:hover {
+  border-color: rgb(0, 0, 0);
+  background-color: aliceblue;
+  color: rgb(0, 0, 0);
 }
 </style>

@@ -41,6 +41,38 @@ export default {
 </script>
 
 <style scoped>
+.heading {
+  font-size: 3.5rem;
+  text-align: center;
+}
+
+.form-wrapper {
+  width: 25rem;
+  height: 30rem;
+  margin: auto;
+  background-color: aliceblue;
+  border-radius: 2rem;
+  text-align: center;
+}
+
+form {
+  padding-top: 2rem;
+  font-size: 2rem;
+}
+
+input {
+  border-radius: 2rem;
+  height: 2.5rem;
+  width: 15rem;
+  border: solid;
+  border-color: black;
+  border-width: 1px;
+  padding-left: 1.5rem;
+  margin-top: 2rem;
+}
+p {
+  font-size: 1rem;
+}
 button {
   display: inline-block;
   padding: 0.3em 1.2em;

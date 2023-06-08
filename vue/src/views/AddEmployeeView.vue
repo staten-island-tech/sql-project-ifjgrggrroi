@@ -1,56 +1,36 @@
 <template>
-  <button class="Btn" @click="reroute">Back To Home Page</button>
-
   <h1 class="header">Add an Employee</h1>
+  <div class="form-wrapper">
+    <form id="form" @submit="addData">
+      <!-- <label for="name">Name</label> -->
+      <input v-model="names" type="text" id="name" class="text-box" placeholder="Name" required />
 
-  <form id="form" @submit="addData">
-    <div class="parent">
-      <div class="form inputs">
-        <div class="form-input"></div>
+      <!--    <label for="location">Location</label> -->
+      <input
+        v-model="locations"
+        type="text"
+        id="location"
+        class="text-box"
+        placeholder="Location"
+        required
+      />
 
-        <div class="form-input">
-          <label for="name" class="text">Name</label>
-          <input
-            v-model="names"
-            type="text"
-            id="name"
-            class="text-box"
-            placeholder="Enter a Name"
-            required
-          />
-        </div>
+      <!-- <label for="pay">Pay</label> -->
+      <input
+        v-model="pays"
+        type="number"
+        min="0"
+        id="pay"
+        class="text-box"
+        placeholder="Salary"
+        required
+      />
 
-        <div class="form-input">
-          <label for="location" class="text">Location</label>
-          <input
-            v-model="locations"
-            type="text"
-            id="location"
-            class="text-box"
-            placeholder="Enter a Place"
-            required
-          />
-        </div>
-
-        <div class="form-input">
-          <label for="pay" class="text">Pay</label>
-          <input
-            v-model="pays"
-            type="number"
-            min="0"
-            id="pay"
-            class="text-box"
-            placeholder="Enter a Number"
-            required
-          />
-        </div>
-      </div>
-    </div>
-    <div class="submit">
       <!-- <input type="submit" value="Submit" id="submit" /> -->
-      <input type="submit" value="Submit" id="Button" />
-    </div>
-  </form>
+      <button type="submit" id="Button" @click="routeToHome">Save</button>
+    </form>
+  </div>
+  <!--   <button @click="routeToHome">Back To Home Page</button> -->
 </template>
 
 <script setup>
@@ -64,8 +44,8 @@ const names = ref('')
 const locations = ref('')
 const pays = ref('')
 
-function reroute() {
-  router.push({ path: '/' })
+function routeToHome() {
+  router.push({ path: '/home' })
 }
 
 async function addData(e) {
@@ -88,32 +68,31 @@ async function addData(e) {
 }
 </script>
 
-<style>
-.header {
+<style scoped>
+h1 {
   font-size: 3rem;
   margin-bottom: 1rem;
-}
-
-.submit {
   text-align: center;
 }
+/* div {
+  display: block;
+  text-align: center;
+  margin-top: auto;
+} */
 
-#Button {
-  border-radius: 2rem;
-  font-size: 1.5rem;
+.form-wrapper {
+  width: 25rem;
+  height: 30rem;
+  margin: auto;
   background-color: aliceblue;
-  padding: 5px 15px 5px 15px;
-  width: 15%;
+  border-radius: 2rem;
+  text-align: center;
 }
-
-.Btn {
-  border-radius: 2rem;
-  font-size: 2.2rem;
-  background-color: aliceblue;
-  padding: 5px 15px 5px 15px;
-  margin-top: 1rem;
-  margin-left: 1rem;
-  margin-bottom: 2rem;
+form {
+  padding-top: 2rem;
+  font-size: 2rem;
+}
+/* .submit {
   text-align: center;
 }
 
@@ -133,10 +112,42 @@ async function addData(e) {
   padding: 0.5rem;
   width: 100%;
   align-items: center;
+} */
+input {
+  border-radius: 2rem;
+  height: 2.5rem;
+  width: 15rem;
+  border: solid;
+  border-color: black;
+  border-width: 1px;
+  padding-left: 1.5rem;
+  margin-top: 2rem;
 }
 
-.btn {
-  font-size: 2rem;
-  padding: 0.5rem;
+button {
+  display: block;
+  margin: auto;
+  margin-top: 1rem;
+  font-size: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  color: #ffffff;
+  text-align: center;
+  background-color: rgb(37, 131, 214);
+  transition: all 0.2s;
+  border: 1px solid;
+  border-radius: 2em;
+}
+
+button:hover {
+  border-color: rgb(0, 0, 0);
+  background-color: aliceblue;
+  color: rgb(0, 0, 0);
 }
 </style>

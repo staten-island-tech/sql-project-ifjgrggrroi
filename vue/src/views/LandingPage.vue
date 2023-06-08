@@ -33,4 +33,31 @@ h1 {
 .app {
   text-align: center;
 }
+
+button {
+  display: block;
+  margin: auto;
+  margin-top: 1rem;
+  font-size: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  color: #ffffff;
+  text-align: center;
+  background-color: rgb(37, 131, 214);
+  transition: all 0.2s;
+  border: 1px solid;
+  border-radius: 2em;
+}
+
+button:hover {
+  border-color: rgb(0, 0, 0);
+  background-color: aliceblue;
+  color: rgb(0, 0, 0);
+}
 </style>

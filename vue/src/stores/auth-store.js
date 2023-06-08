@@ -1,10 +1,12 @@
 import { ref, reactive } from 'vue'
 import { defineStore } from 'pinia'
 import { supabase } from '../lib/supabaseClient.js'
+import { useLocalStorage } from '@vueuse/core'
 
 export const useAuthStore = defineStore('authStore', {
   state: () => ({
-    loggedIn: false,
+    loggedIn: useLocalStorage('loggedIn', false),
+    //loggedIn: false,
     currentUser: null
   }),
 

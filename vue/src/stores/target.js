@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
+import { useLocalStorage } from '@vueuse/core'
 
-export const useUserStore = defineStore('user', {
+export const useTargetStore = defineStore('user', {
   state: () => {
     return {
       target: null
