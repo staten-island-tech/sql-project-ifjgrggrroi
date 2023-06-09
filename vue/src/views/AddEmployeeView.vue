@@ -1,9 +1,6 @@
 <template>
   <h1 class="header">Add an Employee</h1>
-  <!-- <h2>
-    Please choose one of the following locations: Staten Island (id:1), Manhattan (id:2), Brooklyn
-    (id:3),
-  </h2> -->
+  <h2>Please choose one of the following locations: Staten Island, Manhattan, Brooklyn</h2>
   <div class="form-wrapper">
     <form id="form" @submit="addData">
       <!-- <label for="name">Name</label> -->

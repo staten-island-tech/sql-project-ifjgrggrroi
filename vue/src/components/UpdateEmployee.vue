@@ -2,10 +2,7 @@
   <div class="parent">
     <div class="card">
       <h1 class="text">Update Employee</h1>
-      <!-- <h2>
-        Please choose one of the following locations: Staten Island (id:1), Manhattan (id:2),
-        Brooklyn (id:3),
-      </h2> -->
+      <h2>Please choose one of the following locations: Staten Island, Manhattan, Brooklyn</h2>
       <p>ID: {{ user.target }}</p>
       <p class="text">
         <strong>Name: </strong> <input v-model="names" placeholder="Enter text" required />
