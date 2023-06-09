@@ -4,8 +4,6 @@
     <form id="form" @submit="addData">
       <!-- <label for="name">Name</label> -->
       <input v-model="names" type="text" id="name" class="text-box" placeholder="Name" required />
-
-      <!--    <label for="location">Location</label> -->
       <input
         v-model="locations"
         type="text"
