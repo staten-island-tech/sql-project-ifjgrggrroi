@@ -1,5 +1,9 @@
 <template>
   <h1 class="header">Add an Employee</h1>
+  <!-- <h2>
+    Please choose one of the following locations: Staten Island (id:1), Manhattan (id:2), Brooklyn
+    (id:3),
+  </h2> -->
   <div class="form-wrapper">
     <form id="form" @submit="addData">
       <!-- <label for="name">Name</label> -->
@@ -13,7 +17,7 @@
         required
       />
 
-      <!--     <input
+      <!-- <input
         v-model="locationIDs"
         type="text"
         id="locationID"
@@ -46,7 +50,7 @@ import { supabase } from '../lib/supabaseClient'
 import { ref, computed } from 'vue'
 
 const router = useRouter()
-// const ids = ref('')
+// const locationIDs = ref('')
 const names = ref('')
 const locations = ref('')
 const pays = ref('')
@@ -57,14 +61,16 @@ async function addData(e) {
     let name = names.value
     let location = locations.value
     let pay = pays.value
+    // let locationID = locationIDs.value
 
     const { data, error } = await supabase
       .from('alldata')
       .insert([{ employee_name: name, location_name: location, salary: pay }])
+    // location_id: locationID
 
     // await supabase.from('AnnieTeaHouse').insert({ location: location })
     //await supabase.from('Pay').insert({ pay: pay })
-    await supabase.from('employees').insert({ employee_name: name, pay: salary })
+    await supabase.from('employees').insert({ employee_name: name, salary: pay })
     // check()
     console.log('added')
     // console.log(locationID)

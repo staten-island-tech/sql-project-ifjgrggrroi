@@ -2,6 +2,10 @@
   <div class="parent">
     <div class="card">
       <h1 class="text">Update Employee</h1>
+      <!-- <h2>
+        Please choose one of the following locations: Staten Island (id:1), Manhattan (id:2),
+        Brooklyn (id:3),
+      </h2> -->
       <p>ID: {{ user.target }}</p>
       <p class="text">
         <strong>Name: </strong> <input v-model="names" placeholder="Enter text" required />
@@ -10,7 +14,7 @@
         <strong>Location: </strong>
         <input v-model="locations" placeholder="Enter a place" required />
       </p>
-      <!--  <p class="text">
+      <!-- <p class="text">
         <strong>Location ID: </strong>
         <input v-model="locationIDs" placeholder="Enter a ID" required />
       </p> -->
@@ -40,20 +44,30 @@ const props = defineProps({
 const names = ref('')
 const pays = ref('')
 const locations = ref('')
+// const locationIDs = ref('')
 
 async function Update(e) {
   try {
     let Name = names.value
     let Pay = pays.value
     let Location = locations.value
+    // let locationID = locationIDs.value
 
     e.preventDefault()
 
     const { data, error } = await supabase
       .from('alldata')
-      .update({ salary: Pay, employee_name: Name, location_name: Location })
+      .update({
+        salary: Pay,
+        employee_name: Name,
+        location_name: Location
+        // location_id: locationID
+      })
       .eq('id', user.target)
-    await supabase.from('employees').update({ name: Name, salary: Pay }).eq('id', user.target)
+    await supabase
+      .from('employees')
+      .update({ employee_name: Name, salary: Pay })
+      .eq('id', user.target)
 
     console.log('Updated')
   } catch (error) {
