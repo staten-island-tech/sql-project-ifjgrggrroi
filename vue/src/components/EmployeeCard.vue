@@ -1,10 +1,10 @@
 <template>
   <div :id="Data.id" class="card">
     <h1>ID: {{ Data.id }}</h1>
-    <h2>{{ Data.name }}</h2>
-    <h3>Location: {{ Data.location }}</h3>
-    <h3>Salary: ${{ Data.pay }}</h3>
-    <button :id="Data.name" @click="youSure">Fire</button>
+    <h2>{{ Data.employee_name }}</h2>
+    <h3>Location: {{ Data.location_name }}</h3>
+    <h3>Salary: ${{ Data.salary }}</h3>
+    <button :id="Data.employee_name" @click="youSure">Fire</button>
     <button @click="toUpdate">Edit</button>
     <!--     <p id="demo"></p> -->
   </div>
@@ -38,7 +38,8 @@ function youSure(e) {
 async function fire(e) {
   let target = e.target.parentElement.id
 
-  const { data, error } = await supabase.from('employees').delete().eq('id', target)
+  const { data, error } = await supabase.from('alldata').delete().eq('id', target)
+  await supabase.from('employees').delete().eq('id', target)
   e.target.parentElement.remove()
 
   /* const { data, error } = await supabase.from('Pay').delete().eq('id', target)
@@ -55,7 +56,6 @@ async function fire(e) {
   async function getData() {
     try {
       let { data: alldata, error } = await supabase.from('alldata').select('*')
-
       Data.value = await alldata
     } catch (error) {
       console.log(error)

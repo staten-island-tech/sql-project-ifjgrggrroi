@@ -19,14 +19,14 @@
         required
       />
 
-      <input
+      <!--     <input
         v-model="locationIDs"
         type="text"
         id="locationID"
         class="text-box"
         placeholder="Location ID"
         required
-      />
+      /> -->
 
       <!-- <label for="pay">Pay</label> -->
       <input
@@ -56,42 +56,21 @@ const router = useRouter()
 const names = ref('')
 const locations = ref('')
 const pays = ref('')
-const locationIDs = ref('')
-
-// function routeToHome() {
-//   router.push({ path: '/home' })
-// }
-
-/* function check() {
-  let text = document.getElementById('locaton').value
-
-  if (text === 'Staten Island') {
-    let locationID = locationIDs.value
-    console.log('Staten Island')
-  } else text === 'Brooklyn'
-  {
-    let locationID = locationIDs.value
-    console.log('Brooklyn')
-  }
-} */
 
 async function addData(e) {
   try {
     e.preventDefault()
-    // let ID = ids.value
     let name = names.value
     let location = locations.value
-    let locationID = locationIDs.value
     let pay = pays.value
-
-    e.preventDefault()
 
     const { data, error } = await supabase
       .from('alldata')
-      .insert({ location: location, locationID: locationID, name: name, pay: pay })
+      .insert([{ employee_name: name, location_name: location, salary: pay }])
+
     // await supabase.from('AnnieTeaHouse').insert({ location: location })
-    await supabase.from('Pay').insert({ pay: pay })
-    await supabase.from('employees').insert({ name: name, locationID: locationID })
+    //await supabase.from('Pay').insert({ pay: pay })
+    await supabase.from('employees').insert({ employee_name: name, pay: salary })
     // check()
     console.log('added')
     // console.log(locationID)
