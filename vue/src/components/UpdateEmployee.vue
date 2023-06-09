@@ -2,10 +2,25 @@
   <div class="parent">
     <div class="card">
       <h1 class="text">Update Employee</h1>
+      <h2>
+        When adding a location, please Enter either Staten Island (ID: 3), Manhattan (ID: 1), or
+        Brooklyn (ID: 2)
+      </h2>
       <p>ID: {{ user.target }}</p>
-      <p class="text"><strong>Name: </strong> <input v-model="names" required /></p>
-      <p class="text"><strong>Location ID: </strong> <input v-model="locationIDs" required /></p>
-      <p class="text"><strong>Salary: </strong> <input v-model="pays" required /></p>
+      <p class="text">
+        <strong>Name: </strong> <input v-model="names" placeholder="Enter text" required />
+      </p>
+      <p class="text">
+        <strong>Location: </strong>
+        <input v-model="locations" placeholder="Enter a place" required />
+      </p>
+      <p class="text">
+        <strong>Location ID: </strong>
+        <input v-model="locationIDs" placeholder="Enter a ID" required />
+      </p>
+      <p class="text">
+        <strong>Salary: </strong> <input v-model="pays" placeholder="Enter a number" required />
+      </p>
       <button class="btn" @click="Update">Submit</button>
     </div>
   </div>
@@ -28,29 +43,28 @@ const props = defineProps({
 
 const names = ref('')
 const pays = ref('')
+const locations = ref('')
 const locationIDs = ref('')
 
 async function Update(e) {
   try {
     let Name = names.value
     let Pay = pays.value
-    let LocationID = locationIDs.value
+    let Location = locations.value
+    let locationID = locationIDs.value
 
     e.preventDefault()
 
     const { data, error } = await supabase
-      .from('employees')
-      .update({ name: Name, locationID: LocationID })
-      .eq('id', user.target)
-    await supabase.from('Pay').update({ pay: Pay }).eq('id', user.target)
-
-    /* const { data, error } = await supabase
       .from('alldata')
-      .update({ pay: Pay, name: Name, location: Location })
+      .update({ pay: Pay, name: Name, location: Location, locationID: locationID })
       .eq('id', user.target)
     await supabase.from('Pay').update({ pay: Pay }).eq('id', user.target)
-    await supabase.from('AnnieTeaHouse').update({ location: Location }).eq('id', user.target)
-    await supabase.from('employees').update({ name: Name }).eq('id', user.target) */
+    // await supabase.from('AnnieTeaHouse').update({ location: Location }).eq('id', user.target)
+    await supabase
+      .from('employees')
+      .update({ name: Name, locationID: locationID })
+      .eq('id', user.target)
 
     console.log('Updated')
   } catch (error) {
@@ -126,5 +140,9 @@ getData()
   overflow: auto;
   background-color: rgb(0, 0, 0);
   background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+h2 {
+  font-size: 15px;
 }
 </style>

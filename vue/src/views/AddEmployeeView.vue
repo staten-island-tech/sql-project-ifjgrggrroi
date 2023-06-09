@@ -1,5 +1,9 @@
 <template>
   <h1 class="header">Add an Employee</h1>
+  <h2>
+    When adding a location, please Enter either Staten Island (ID: 3), Manhattan (ID: 1), or
+    Brooklyn (ID: 2)
+  </h2>
   <div class="form-wrapper">
     <form id="form" @submit="addData">
       <!-- <label for="name">Name</label> -->
@@ -15,6 +19,15 @@
         required
       />
 
+      <input
+        v-model="locationIDs"
+        type="text"
+        id="locationID"
+        class="text-box"
+        placeholder="Location ID"
+        required
+      />
+
       <!-- <label for="pay">Pay</label> -->
       <input
         v-model="pays"
@@ -27,7 +40,7 @@
       />
 
       <!-- <input type="submit" value="Submit" id="submit" /> -->
-      <button type="submit" id="Button" @click="routeToHome">Save</button>
+      <button type="submit" id="Button" @click="addData">Save</button>
     </form>
   </div>
   <!--   <button @click="routeToHome">Back To Home Page</button> -->
@@ -39,14 +52,28 @@ import { supabase } from '../lib/supabaseClient'
 import { ref, computed } from 'vue'
 
 const router = useRouter()
-const ids = ref('')
+// const ids = ref('')
 const names = ref('')
 const locations = ref('')
 const pays = ref('')
+const locationIDs = ref('')
 
-function routeToHome() {
-  router.push({ path: '/home' })
-}
+// function routeToHome() {
+//   router.push({ path: '/home' })
+// }
+
+/* function check() {
+  let text = document.getElementById('locaton').value
+
+  if (text === 'Staten Island') {
+    let locationID = locationIDs.value
+    console.log('Staten Island')
+  } else text === 'Brooklyn'
+  {
+    let locationID = locationIDs.value
+    console.log('Brooklyn')
+  }
+} */
 
 async function addData(e) {
   try {
@@ -54,17 +81,24 @@ async function addData(e) {
     // let ID = ids.value
     let name = names.value
     let location = locations.value
+    let locationID = locationIDs.value
     let pay = pays.value
-    let { data, error } = await supabase
+
+    e.preventDefault()
+
+    const { data, error } = await supabase
       .from('alldata')
-      .insert({ location: location, name: name, pay: pay })
-    await supabase.from('AnnieTeaHouse').insert({ location: location })
-    await supabase.from('Pay').insert([{ pay: pay }])
-    await supabase.from('employees').insert([{ name: name }])
+      .insert({ location: location, locationID: locationID, name: name, pay: pay })
+    // await supabase.from('AnnieTeaHouse').insert({ location: location })
+    await supabase.from('Pay').insert({ pay: pay })
+    await supabase.from('employees').insert({ name: name, locationID: locationID })
+    // check()
     console.log('added')
+    // console.log(locationID)
   } catch (error) {
     console.log('error')
   }
+  router.push({ path: '/home' })
 }
 </script>
 
@@ -72,6 +106,10 @@ async function addData(e) {
 h1 {
   font-size: 3rem;
   margin-bottom: 1rem;
+  text-align: center;
+}
+h2 {
+  font-size: 1rem;
   text-align: center;
 }
 /* div {
